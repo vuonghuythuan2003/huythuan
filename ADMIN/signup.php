@@ -62,7 +62,7 @@ function GuiMail($conn, $email, $fullname, $idUser, $randomkey){
                 "allow_self_signed" => true
             )
         ));
-        $mail->send();
+        $mail->send();  
         $sqlUpdateActive = "UPDATE t_user SET active = 1 WHERE id = ?";
         $stUpdateActive = $conn->prepare($sqlUpdateActive);
         $stUpdateActive->execute([$idUser]);
