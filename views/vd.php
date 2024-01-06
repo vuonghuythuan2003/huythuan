@@ -61,6 +61,7 @@
             <input type="radio" name="mood3" value="2"> Tôi cảm thấy mình chẳng có gì mong đợi ở tương lai cả.<br>
             <input type="radio" name="mood3" value="2"> Tôi cảm thấy sẽ không bao giờ khắc phục được những điều phiền muộn của tôi.<br>
             <input type="radio" name="mood3" value="3"> Tôi cảm thấy tương lai tuyệt vọng và tình hình chỉ có thể tiếp tục xấu đi hoặc không thể cải thiện được.<br>
+            </div>
 
         <div class="question question3 hidden">
             <label>3. Bạn cảm thấy thế nào về bản thân và sự thất bại?</label>
