@@ -128,3 +128,93 @@ p{
     color: green;
 }
 
+.contain {
+    display: flex;
+    /* height: 100vh; Chiều cao 100% của viewport */
+    margin-top: 50px;
+}
+
+#column1 {
+    flex: 1.5;
+    /* Cột 1 chiếm một phần */
+    padding: 20px;
+    /* Khoảng cách giữa các cột */
+    box-sizing: border-box;
+    /* Bao gồm padding trong kích thước tổng cộng của phần tử */
+}
+
+#column2 {
+    flex: 1;
+    /* Cột 2 chiếm hai phần */
+    padding: 20px;
+    /* Khoảng cách giữa các cột */
+    box-sizing: border-box;
+    /* Bao gồm padding trong kích thước tổng cộng của phần tử */
+}
+.toggle-container {
+    position: relative;
+    
+}
+
+.toggle-button {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    /* font-weight: bold; */
+}
+
+.hidden-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+.visible {
+    max-height: 1000px;
+    /* Giá trị tùy chọn, đủ lớn để hiển thị nội dung */
+    transition: max-height 0.5s ease-in;
+}
+#column2 .form-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 40px; /* Khoảng cách giữa cột và form */
+    box-sizing: border-box; /* Bao gồm padding trong kích thước tổng cộng của phần tử */
+}
+
+#column2 .form-container label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#column2 .form-container input,
+#column2 .form-container textarea {
+    width: calc(100% - 20px); /* Tránh đụng lề ngoài của form */
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#column2 .form-container button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đường viền đổ bóng */
+}
+
+#column2 .form-container button:hover {
+    background-color: whitesmoke;
+}
