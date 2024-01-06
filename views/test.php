@@ -48,6 +48,11 @@
         nextQuestion();
       }
     }
+    function completeSurvey() {
+      // Xử lý khi người dùng nhấn nút "Hoàn thành"
+      // Chuyển hướng đến trang test.php
+      window.location.href = 'test.php';
+    }
   </script>
 </head>
 <body>
@@ -59,7 +64,6 @@
     <input type="radio" name="mood1" value="2" onclick="answerQuestion(this.value)"> Luôn cảm thấy chán hoặc buồn và khó dừng lại<br>
     <input type="radio" name="mood1" value="2" onclick="answerQuestion(this.value)"> Luôn cảm thấy buồn và bất hạnh đến mức hoàn toàn đau khổ<br>
     <input type="radio" name="mood1" value="3" onclick="answerQuestion(this.value)"> Rất buồn hoặc rất bất hạnh và khổ sở đến mức không thể chịu được<br>
-    <button onclick="continueToNextQuestion()">Tiếp tục</button>
 </div>
 
 <div class="question question2" style="display: none;">
@@ -69,7 +73,6 @@
     <input type="radio" name="mood2" value="2" onclick="answerQuestion(this.value)"> Tôi cảm thấy mình chẳng có gì mong đợi ở tương lai cả.<br>
     <input type="radio" name="mood2" value="2" onclick="answerQuestion(this.value)"> Tôi cảm thấy sẽ không bao giờ khắc phục được những điều phiền muộn của tôi.<br>
     <input type="radio" name="mood2" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy tương lai tuyệt vọng và tình hình chỉ có thể tiếp tục xấu đi hoặc không thể cải thiện được.<br>
-    <button onclick="continueToNextQuestion()">Tiếp tục</button>
 </div>
 
 <div class="question question3" style="display: none;">
@@ -80,13 +83,15 @@
     <input type="radio" name="mood3" value="2" onclick="answerQuestion(this.value)"> Nhìn lại cuộc đời, thấy mình đã có quá nhiều thất bại<br>
     <input type="radio" name="mood3" value="3" onclick="answerQuestion(this.value)"> Cảm thấy mình là một người hoàn toàn thất bại<br>
     <input type="radio" name="mood3" value="3" onclick="answerQuestion(this.value)"> Tự cảm thấy hoàn toàn thất bại trong vai trò của mình (bố, mẹ, chồng, vợ…)<br>
-    <button onclick="continueToNextQuestion()">Tiếp tục</button>
 </div>
 <div class="completion" style="display: none;">
-    <p>Điểm của bạn là: <span id="userScoreDisplay"></span></p>
-    <p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>
-
+  <p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>
+  <p>Điểm của bạn là: <span id="userScoreDisplay"></span></p>
 </div>
+
+<!-- Nút "Tiếp tục" và "Hoàn thành" -->
+<button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
+<button id="completeButton" onclick="completeSurvey()" style="display: none;">Hoàn thành</button>
 
 
 </body>
