@@ -49,7 +49,13 @@
         </li>
         <li><a href="lienhe.php">Liên hệ</a></li>
 
-        <li><a href="#">Giải pháp</a></li>
+        <li><a href="#">Giải pháp</a>
+        <ul class="sub-menu">
+                <li><a href="baiviet.php">Bài viết</a></li>
+                <li><a href="video.php">Video</a></li>
+                <li><a href="game.php">Game</a></li>
+            </ul>
+        </li>
         <li><a href="#">Bài Test</a></li>
 
         <li style="float: right; margin-right: 0px;">
@@ -113,7 +119,6 @@
         array('title' => '5 Cách dễ ngủ do bác sĩ đề xuất', 'content' => 'Hàng đêm bạn mất rất nhiều thời gian để đi vào giấc ngủ? Hãy xem ngay 5 cách dễ ngủ do bác sĩ đề xuất để cải thiện ngay tình trạng này', 'image' => '../IMAGE/5meodengu.jpg', 'link' => 'baiviet3.php'),
     );
 
-    // Bài viết
     echo '<div class="row">';
     foreach ($articles as $article) {
         echo '<div class="content">';
@@ -125,31 +130,6 @@
     }
     echo '</div>';
 
-    $videos = array(
-        array('title' => 'Vượt qua trầm cảm – Hành trình chữa lành ', 'url' => 'qyTrplpPETI'),
-        array('title' => 'Đồng hành cùng con vượt qua trầm cảm', 'url' => 'NyFXvujE6ts'),
-        array('title' => 'Xua tan áp lực – Đón Tết đủ đầy', 'url' => 'vuSuDvG2-sI'),
-        array('title' => 'NHẠC THIỀN - TĨNH TÂM - AN NHIÊN TỰ TẠI.', 'url' => '5FCcXCchXDk'),
-        array('title' => 'Âm nhạc sức khỏe trị liệu tinh tế ', 'url' => 'pAqSD_sIBkA'),
-        array('title' => 'Âm nhạc trị liệu cho các mạch máu và máu', 'url' => 'jEuH22TeiKg'),
-        array('title' => 'Podcast #37: ai cũng đi qua cơn giông của riêng mình', 'url' => 'deYD4raZssg'),
-        array('title' => 'Cách vượt qua 03 nỗi sợ lớn nhất', 'url' => 'odjCDVBCepU'),
-        array('title' => 'Cách để đối diện với tiêu cực và vượt qua nó', 'url' => 'bdK95yNhIP0'),
-    );
-
-
-
-    // Video
-    echo '<div class="row">';
-    foreach ($videos as $video) {
-        echo '<div class="content">';
-        echo '<h2>' . $video['title'] . '</h2>';
-        echo '<div class="video-container">';
-        echo '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' . $video['url'] . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-        echo '</div>';
-        echo '</div>';
-    }
-    echo '</div>';
     ?>
  </center>
 </body>
