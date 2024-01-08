@@ -1,59 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script>
-    var currentQuestionIndex = 1;
-    var totalQuestions = 3;
-    var userScore = 0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Survey Page</title>
+    <script>
+        let currentQuestionIndex = 1;
 
-    function showQuestion(index) {
-      var questionDiv = document.querySelector('.question' + index);
-      questionDiv.style.display = 'block';
-    }
+        function answerQuestion(value) {
+            // Your existing logic for handling question answers
+        }
 
-    function hideQuestion(index) {
-      var questionDiv = document.querySelector('.question' + index);
-      questionDiv.style.display = 'none';
-    }
+        function continueToNextQuestion() {
+            // Check if it's the last question
+            if (currentQuestionIndex === 3) {
+                // Show the "Complete" button
+                document.getElementById('completeButton').style.display = 'block';
 
-    function nextQuestion() {
-      hideQuestion(currentQuestionIndex);
-      currentQuestionIndex++;
+                // Hide the "Next" button
+                document.getElementById('nextButton').style.display = 'none';
+            } else {
+                // Your existing logic for showing/hiding questions
+                document.querySelector(`.question${currentQuestionIndex}`).style.display = 'none';
+                currentQuestionIndex++;
+                document.querySelector(`.question${currentQuestionIndex}`).style.display = 'block';
+            }
+        }
 
-      if (currentQuestionIndex <= totalQuestions) {
-        showQuestion(currentQuestionIndex);
-      } else {
-        showCompletion();
-      }
-    }
+        function completeSurvey() {
+            // Calculate total score based on answers
+            var totalScore = calculateTotalScore();
 
-    function showCompletion() {
-      hideQuestion(totalQuestions);
+            // Display the score
+            document.getElementById('userScoreDisplay').innerText = totalScore;
 
-      var completionDiv = document.querySelector('.completion');
-      completionDiv.style.display = 'block';
-      completionDiv.innerHTML = '<p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p><p>Điểm của bạn là: ' + userScore + '</p>';
+            // Hide the questions and show the completion message
+            document.querySelector('.question').style.display = 'none';
+            document.querySelector('.completion').style.display = 'block';
 
-      // Ẩn nút "Tiếp tục" và hiển thị nút "Hoàn thành"
-      document.getElementById('nextButton').style.display = 'none';
-      document.getElementById('completeButton').style.display = 'block';
-    }
+            // Send the total score to the server (you may want to use AJAX for this)
+            sendScoreToServer(totalScore);
+        }
 
-    function answerQuestion(value) {
-      userScore += parseInt(value);
-    }
+        function calculateTotalScore() {
+            // Your logic to calculate the total score based on user answers
+            // For simplicity, let's assume you sum up the values of all selected radio buttons
+            var totalScore = 0;
 
-    function continueToNextQuestion() {
-      if (currentQuestionIndex <= totalQuestions) {
-        nextQuestion();
-      }
-    }
-    function completeSurvey() {
-      // Xử lý khi người dùng nhấn nút "Hoàn thành"
-      // Chuyển hướng đến trang test.php
-      window.location.href = 'test.php';
-    }
-  </script>
+            var radioButtons = document.querySelectorAll('input[type=radio]:checked');
+            radioButtons.forEach(function (radioButton) {
+                totalScore += parseInt(radioButton.value);
+            });
+
+            return totalScore;
+        }
+
+        function sendScoreToServer(score) {
+            // Your logic to send the score to the server (you may want to use AJAX for this)
+            // For simplicity, I'm using a basic form submission
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = '../ADMIN/connect.php'; // Create a PHP file to handle score saving
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'user_score';
+            input.value = score;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </head>
 <body>
 
@@ -92,7 +110,6 @@
 <!-- Nút "Tiếp tục" và "Hoàn thành" -->
 <button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
 <button id="completeButton" onclick="completeSurvey()" style="display: none;">Hoàn thành</button>
-
 
 </body>
 </html>

@@ -18,7 +18,7 @@
               $_SESSION['login_id'] = $user['id'];
               $_SESSION['login_user'] = $user['username'];
               $_SESSION['login_fullname'] = $user['fullname'];
-              header('location: index.php');
+              header('location: ../views/test.php');
               exit();
           } elseif ($idgroup == 1) {
               $_SESSION['admin_id'] = $user['id'];
