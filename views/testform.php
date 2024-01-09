@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Survey Page</title>
-    <link rel="stylesheet" href="../CSS/testform.css">
     <script src="../JS/testform.js"></script>
 </head>
 <body>
@@ -32,8 +31,7 @@
     <input type="radio" name="mood3" value="0" onclick="answerQuestion(this.value)"> Không cảm thấy như bị thất bại<br>
     <input type="radio" name="mood3" value="1" onclick="answerQuestion(this.value)"> Thấy mình thất bại nhiều hơn những người khác<br>
     <input type="radio" name="mood3" value="2" onclick="answerQuestion(this.value)"> Cảm thấy đã hoàn thành rất ít điều đáng giá hoặc có ý nghĩa<br>
-    <input type="radio" name="mood3" value="2" onclick="answerQuestion(this.value)"> Nhìn lại cuộc đời, thấy mình đã có quá nhiều thất bại<br>
-    <input type="radio" name="mood3" value="3" onclick="answerQuestion(this.value)"> Cảm thấy mình là một người hoàn toàn thất bại<br>
+    <input type="radio" name="mood3" value="2" onclick="answerQuestion(this.value)"> Nhìn lại cuộc đời, thấy mình đã có quá nhiều thất bại<br><input type="radio" name="mood3" value="3" onclick="answerQuestion(this.value)"> Cảm thấy mình là một người hoàn toàn thất bại<br>
     <input type="radio" name="mood3" value="3" onclick="answerQuestion(this.value)"> Tự cảm thấy hoàn toàn thất bại trong vai trò của mình (bố, mẹ, chồng, vợ…)<br>
 </div>
 
@@ -58,9 +56,7 @@
     <input type="radio" name="mood5" value="2" onclick="answerQuestion(this.value)"> Giờ đây tôi luôn cảm thấy trên thực tế mình tồi hoặc không xứng đáng.<br>
     <input type="radio" name="mood5" value="3" onclick="answerQuestion(this.value)"> Lúc nào tôi cũng cảm thấy mình có tội.<br>
     <input type="radio" name="mood5" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy như là tôi rất tồi hoặc vô dụng.<br>
-</div>
-
-<div class="question question6" style="display: none;">
+</div><div class="question question6" style="display: none;">
     <label>6. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
     <input type="radio" name="mood6" value="0" onclick="answerQuestion(this.value)"> Tôi không cảm thấy đang bị trừng phạt.<br>
     <input type="radio" name="mood6" value="1" onclick="answerQuestion(this.value)"> Tôi cảm thấy có thể mình sẽ bị trừng phạt.<br>
@@ -85,8 +81,7 @@
     <input type="radio" name="mood8" value="0" onclick="answerQuestion(this.value)"> Tôi không tự cảm thấy một chút nào xấu hơn bất kể ai.<br>
     <input type="radio" name="mood8" value="1" onclick="answerQuestion(this.value)"> Tôi phê phán bản thân mình nhiều hơn trước kia.<br>
     <input type="radio" name="mood8" value="1" onclick="answerQuestion(this.value)"> Tôi tự chê mình về sự yếu đuối và lỗi lầm của bản thân.<br>
-    <input type="radio" name="mood8" value="2" onclick="answerQuestion(this.value)"> Tôi phê phán bản thân về tất cả những lỗi lầm của mình.<br>
-    <input type="radio" name="mood8" value="2" onclick="answerQuestion(this.value)"> Tôi khiển trách mình vì những lỗi lầm của bản thân.<br>
+    <input type="radio" name="mood8" value="2" onclick="answerQuestion(this.value)"> Tôi phê phán bản thân về tất cả những lỗi lầm của mình.<br><input type="radio" name="mood8" value="2" onclick="answerQuestion(this.value)"> Tôi khiển trách mình vì những lỗi lầm của bản thân.<br>
     <input type="radio" name="mood8" value="3" onclick="answerQuestion(this.value)"> Tôi đổ lỗi cho bản thân về tất cả mọi điều tồi tệ xảy ra.<br>
     <input type="radio" name="mood8" value="3" onclick="answerQuestion(this.value)"> Tôi khiển trách mình về mọi điều xấu xảy đến.<br>
 </div>
@@ -136,8 +131,7 @@
 
 <div class="question question13" style="display: none;">
     <label>13. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
-    <input type="radio" name="mood13" value="0" onclick="answerQuestion(this.value)"> Tôi quyết định mọi việc cũng tốt như trước.<br>
-    <input type="radio" name="mood13" value="1" onclick="answerQuestion(this.value)"> Tôi thấy khó quyết định mọi việc hơn trước.<br>
+    <input type="radio" name="mood13" value="0" onclick="answerQuestion(this.value)"> Tôi quyết định mọi việc cũng tốt như trước.<br><input type="radio" name="mood13" value="1" onclick="answerQuestion(this.value)"> Tôi thấy khó quyết định mọi việc hơn trước.<br>
     <input type="radio" name="mood13" value="2" onclick="answerQuestion(this.value)"> Tôi thấy khó quyết định mọi việc hơn trước rất nhiều.<br>
     <input type="radio" name="mood13" value="3" onclick="answerQuestion(this.value)"> Không có sự giúp đỡ, tôi không thể quyết định gì được nữa.<br>
     <input type="radio" name="mood13" value="3" onclick="answerQuestion(this.value)"> Tôi chẳng còn có thể quyết định được việc gì nữa.<br>
@@ -154,8 +148,86 @@
     <input type="radio" name="mood14" value="3" onclick="answerQuestion(this.value)"> Tôi thấy mình là người hoàn toàn vô dụng.<br>
     <input type="radio" name="mood14" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy tôi có vẻ xấu xí hoặc ghê tởm.<br>
 </div>
+
+<div class="question question15" style="display: none;">
+    <label>15. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood15" value="0" onclick="answerQuestion(this.value)"> Tôi thấy mình vẫn tràn đầy sức lực như trước đây.<br>
+    <input type="radio" name="mood15" value="1" onclick="answerQuestion(this.value)"> Sức lực của tôi kém hơn trước hoặc tôi không làm việc tốt như trước.<br>
+    <input type="radio" name="mood15" value="1" onclick="answerQuestion(this.value)"> Tôi phải cố gắng để có thể khơỉ động làm một việc gì.<br>
+    <input type="radio" name="mood15" value="2" onclick="answerQuestion(this.value)"> Tôi không đủ sức lực để làm được nhiều việc nữa.<br>
+    <input type="radio" name="mood15" value="2" onclick="answerQuestion(this.value)"> Tôi phải cố gắng hết sức để làm một việc gì.<br>
+    <input type="radio" name="mood15" value="3" onclick="answerQuestion(this.value)"> Tôi không đủ sức lực để làm được bất cứ việc gì nữa.<br>
+    <input type="radio" name="mood15" value="3" onclick="answerQuestion(this.value)"> Tôi hoàn toàn không thể làm một việc gì cả.<br>
+</div>
+
+<div class="question question16" style="display: none;">
+    <label>16. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood16" value="0" onclick="answerQuestion(this.value)"> Không thấy có chút thay đổi gì trong giấc ngủ của tôi.<br>
+    <input type="radio" name="mood16" value="1" onclick="answerQuestion(this.value)"> Tôi ngủ hơi nhiều hơn trước.<br>
+    <input type="radio" name="mood16" value="1" onclick="answerQuestion(this.value)"> Tôi ngủ hơi ít hơn trước.<br>
+    <input type="radio" name="mood16" value="2" onclick="answerQuestion(this.value)"> Tôi ngủ nhiều hơn trước.<br>
+    <input type="radio" name="mood16" value="2" onclick="answerQuestion(this.value)"> Tôi ngủ ít hơn trước.<br>
+    <input type="radio" name="mood16" value="3" onclick="answerQuestion(this.value)"> Tôi ngủ hầu như suốt cả ngày.<br>
+    <input type="radio" name="mood16" value="3" onclick="answerQuestion(this.value)"> Tôi thức dậy 1 - 2 giờ sớm hơn trước và không thể ngủ lại được.<br>
+</div>
+
+<div class="question question17" style="display: none;">
+    <label>17. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood17" value="0" onclick="answerQuestion(this.value)"> Tôi không dễ cáu kỉnh và bực bội hơn trước.<br>
+    <input type="radio" name="mood17" value="0" onclick="answerQuestion(this.value)"> Tôi làm việc không mệt hơn trước một chút nào.<br>
+    <input type="radio" name="mood17" value="1" onclick="answerQuestion(this.value)"> Tôi dễ cáu kỉnh và bực bội hơn trước.<br>
+    <input type="radio" name="mood17" value="1" onclick="answerQuestion(this.value)"> Tôi làm việc dễ mệt hơn trước.<br>
+    <input type="radio" name="mood17" value="2" onclick="answerQuestion(this.value)"> Tôi dễ cáu kỉnh và bực bội hơn trước rất nhiều.<br>
+    <input type="radio" name="mood17" value="2" onclick="answerQuestion(this.value)"> Làm bất cứ việc gì tôi cũng mệt.<br>
+    <input type="radio" name="mood17" value="3" onclick="answerQuestion(this.value)"> Lúc nào tôi cũng dễ cáu kỉnh và bực bội.<br>
+    <input type="radio" name="mood17" value="3" onclick="answerQuestion(this.value)"> Làm bất cứ việc gì tôi cũng quá mệt.<br>
+</div>
+
+<div class="question question18" style="display: none;">
+    <label>18. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood18" value="0" onclick="answerQuestion(this.value)"> Tôi ăn vẫn ngon miệng như trước.<br>
+    <input type="radio" name="mood18" value="1" onclick="answerQuestion(this.value)"> Tôi ăn kém ngon miệng hơn trước.<br>
+    <input type="radio" name="mood18" value="1" onclick="answerQuestion(this.value)"> Tôi ăn ngon miệng hơn trước.<br>
+    <input type="radio" name="mood18" value="2" onclick="answerQuestion(this.value)"> Tôi ăn kém ngon miệng hơn trước rất nhiều.<br>
+    <input type="radio" name="mood18" value="2" onclick="answerQuestion(this.value)"> Tôi ăn ngon miệng hơn trước rất nhiều.<br>
+    <input type="radio" name="mood18" value="3" onclick="answerQuestion(this.value)"> Tôi không thấy ngon miệng một chút nào cả.<br>
+    <input type="radio" name="mood18" value="3" onclick="answerQuestion(this.value)"> Lúc nào tôi cũng thấy thèm ăn.<br>
+</div>
+
+<div class="question question19" style="display: none;">
+    <label>19. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood19" value="0" onclick="answerQuestion(this.value)"> Tôi có thể tập trung chú ý tốt như trước.<br>
+    <input type="radio" name="mood19" value="0" onclick="answerQuestion(this.value)"> Gần đây tôi không sút cân chút nào.<br>
+    <input type="radio" name="mood19" value="1" onclick="answerQuestion(this.value)"> Tôi không thể tập trung chú ý được như trước.<br>
+    <input type="radio" name="mood19" value="1" onclick="answerQuestion(this.value)"> Tôi bị sút cân trên 2 Kg.<br>
+    <input type="radio" name="mood19" value="2" onclick="answerQuestion(this.value)"> Tôi thấy khó tập trung chú ý lâu được vào bất kỳ điều gì.<br>
+    <input type="radio" name="mood19" value="2" onclick="answerQuestion(this.value)"> Tôi bị sút cân trên 4 kg.<br>
+    <input type="radio" name="mood19" value="3" onclick="answerQuestion(this.value)"> Tôi thấy mình không thể tập trung chú ý được vào bất kỳ điều gì nữa.<br>
+    <input type="radio" name="mood19" value="3" onclick="answerQuestion(this.value)"> Tôi bị sút cân trên 6 kg.<br>
+</div>
+
+<div class="question question20" style="display: none;">
+    <label>20. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood20" value="0" onclick="answerQuestion(this.value)"> Tôi không mệt mỏi hơn trước.<br>
+    <input type="radio" name="mood20" value="0" onclick="answerQuestion(this.value)"> Tôi không lo lắng về sức khỏe hơn trước.<br>
+    <input type="radio" name="mood20" value="1" onclick="answerQuestion(this.value)"> Tôi dễ mệt mỏi hơn trước.<br>
+    <input type="radio" name="mood20" value="1" onclick="answerQuestion(this.value)"> Tôi có lo lắng về những đau đớn hoặc những khó chịu ở dạ dày hoặc táo bón và những cảm giác của cơ thể.<br>
+    <input type="radio" name="mood20" value="2" onclick="answerQuestion(this.value)"> Hầu như làm bất kỳ việc gì tôi cũng thấy mệt mỏi.<br>
+    <input type="radio" name="mood20" value="2" onclick="answerQuestion(this.value)"> Tôi quá lo lắng về sức khỏe của tôi, tôi cảm thấy thế nào và điều gì đó đến nổi tôi rất khó suy nghĩ gì thêm nữa.<br>
+    <input type="radio" name="mood20" value="3" onclick="answerQuestion(this.value)"> Tôi quá mệt mỏi khi làm bất kỳ việc gì.<br>
+    <input type="radio" name="mood20" value="3" onclick="answerQuestion(this.value)"> Tôi hoàn toàn bị thu hút vào những cảm giác của tôi.<br>
+</div>
+
+<div class="question question21" style="display: none;">
+    <label>21. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+    <input type="radio" name="mood21" value="0" onclick="answerQuestion(this.value)"> Tôi không thấy có thay đổi gì trong hứng thú tình dục.<br>
+    <input type="radio" name="mood21" value="1" onclick="answerQuestion(this.value)"> Tôi ít hứng thú với tình dục hơn trước.<br>
+    <input type="radio" name="mood21" value="2" onclick="answerQuestion(this.value)"> Hiện nay tôi rất ít hứng thú với tình dục.<br>
+    <input type="radio" name="mood21" value="3" onclick="answerQuestion(this.value)"> Tôi hoàn toàn mất hứng thú tình dục.<br>
+</div>
 <div class="completion" style="display: none;">
-    <p id="completionMessage"></p>
+  <p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>
+  <p>Điểm của bạn là: <span id="userScoreDisplay"></span></p>
 </div>
 
 <!-- Nút "Tiếp tục" và "Hoàn thành" -->
