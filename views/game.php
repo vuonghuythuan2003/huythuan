@@ -114,9 +114,12 @@
        
     <?php
     $games = array(
-        array('title' => 'Game kéo búa bao', 'content' => 'Bạn và máy sẽ chơi cùng nhau', 'image' => '../IMAGE/gamekeobuabao.jpg', 'link' => 'gamekeobuabao.php'),
-        array('title' => 'Game rắn săn mồi', 'content' => 'Game giải trí đơn giản cho bạn', 'image' => '../IMAGE/ransanmoi.png', 'link' => 'gameransanmoi.php'),
-        array('title' => 'Game đoán số', 'content' => 'Cùng đoán số bí mật', 'image' => '../IMAGE/gamedoanso.png', 'link' => 'gamedoanso.php'),
+        array('title' => 'Game Kéo Búa Bao', 'content' => 'Bạn và máy sẽ chơi cùng nhau', 'image' => '../IMAGE/gamekeobuabao.jpg', 'link' => 'gamekeobuabao.php'),
+        array('title' => 'Game Rắn Săn Mồi', 'content' => 'Game giải trí đơn giản cho bạn', 'image' => '../IMAGE/ransanmoi.png', 'link' => 'gameransanmoi.php'),
+        array('title' => 'Game Đoán số', 'content' => 'Cùng đoán số bí mật', 'image' => '../IMAGE/gamedoanso.png', 'link' => 'gamedoanso.php'),
+        array('title' => 'Game Phá Gạch', 'content' => 'Cùng nhau phá gạch', 'image' => '../IMAGE/gamephagach.jpg', 'link' => 'gamephagach.php'),
+        array('title' => 'Game Nhặt Quà', 'content' => 'Cùng nhau bắt quà trên trời', 'image' => '../IMAGE/gamevattrentroi.jpg', 'link' => 'gamevattrentroi.php'),
+        array('title' => 'Game XO', 'content' => 'Cùng nhau chơi XO', 'image' => '../IMAGE/XO.jpg', 'link' => 'gameXO.php'),    
     );
     
     
