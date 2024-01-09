@@ -56,6 +56,7 @@
 </ul>
 <center>
     <h1>Rắn săn mồi</h1>
+    <a>Di chuyển bằng nút Lên Xuống Trái Phải</a>
     <canvas id="snakeCanvas"></canvas>
 
     <script>
