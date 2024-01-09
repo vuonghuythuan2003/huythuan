@@ -155,8 +155,7 @@
     <input type="radio" name="mood14" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy tôi có vẻ xấu xí hoặc ghê tởm.<br>
 </div>
 <div class="completion" style="display: none;">
-  <p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>
-  <p>Điểm của bạn là: <span id="userScoreDisplay"></span></p>
+    <p id="completionMessage"></p>
 </div>
 
 <!-- Nút "Tiếp tục" và "Hoàn thành" -->
