@@ -6,7 +6,7 @@
 
         function continueToNextQuestion() {
             // Check if it's the last question
-            if (currentQuestionIndex === 3) {
+            if (currentQuestionIndex === 14) {
                 // Show the "Complete" button
                 document.getElementById('completeButton').style.display = 'block';
 
@@ -23,17 +23,38 @@
         function completeSurvey() {
             // Calculate total score based on answers
             var totalScore = calculateTotalScore();
-
+        
             // Display the score
             document.getElementById('userScoreDisplay').innerText = totalScore;
-
+        
+            // Evaluate the depression level
+            var depressionLevel = evaluateDepressionLevel(totalScore);
+        
+            // Display the evaluation message
+            var evaluationMessage = document.createElement('p');
+            evaluationMessage.innerText = `Đánh giá mức độ trầm cảm: ${depressionLevel}`;
+            document.querySelector('.completion').appendChild(evaluationMessage);
+        
             // Hide the questions and show the completion message
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.completion').style.display = 'block';
-
+        
             // Send the total score to the server (you may want to use AJAX for this)
             sendScoreToServer(totalScore);
         }
+        
+        function evaluateDepressionLevel(score) {
+            if (score < 14) {
+                return 'Không biểu hiện trầm cảm';
+            } else if (score >= 14 && score <= 19) {
+                return 'Trầm cảm nhẹ';
+            } else if (score >= 20 && score <= 29) {
+                return 'Trầm cảm vừa';
+            } else {
+                return 'Trầm cảm nặng';
+            }
+        }
+        
 
         function calculateTotalScore() {
             // Your logic to calculate the total score based on user answers

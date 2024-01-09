@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Survey Page</title>
+    <link rel="stylesheet" href="../CSS/testform.css">
     <script src="../JS/testform.js"></script>
 </head>
 <body>

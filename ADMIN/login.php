@@ -50,7 +50,7 @@
         <form method="post">
             <div class="vid-container">
                 <video id="Video1" class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
-                    <source src="../videos/intro.mp4" type="video/mp4">
+                <source src="../IMAGE/vid.mp4" type="video/mp4">
                 </video>
                 <div class="inner-container">
                     <div class="box">
