@@ -55,6 +55,7 @@
             }
         }
         
+        
 
         function calculateTotalScore() {
             // Your logic to calculate the total score based on user answers
