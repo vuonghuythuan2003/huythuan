@@ -5,8 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Survey Page</title>
     <script src="../JS/testform.js"></script>
+    <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px; /* Đặt kích thước của form */
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            margin-top: 20px; /* Khoảng cách giữa câu hỏi và nút tiếp tục */
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .completion {
+            margin-top: 20px;
+        }
+
+        #userScoreDisplay {
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        .form-container label,
+.form-container input,
+.form-container button {
+    margin-bottom: 10px;
+    line-height: 1.5; /* Adjust this value as needed */
+}
+
+    </style>
 </head>
 <body>
+<div class="form-container">
 
 <div class="question question1">
     <label>1. Bạn cảm thấy thế nào về tâm trạng buồn của mình gần đây?</label> <br>
@@ -233,6 +296,5 @@
 <!-- Nút "Tiếp tục" và "Hoàn thành" -->
 <button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
 <button id="completeButton" onclick="completeSurvey()" style="display: none;">Hoàn thành</button>
-
 </body>
 </html>
