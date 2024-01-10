@@ -12,7 +12,7 @@ function sendWeeklyEmail() {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'vuonghuythuan1@gmail.com'; // Thay đổi địa chỉ email người gửi
-        $mail->Password = 'ymxea rvjt gqqt zmtd'; // Thay đổi mật khẩu email người gửi
+        $mail->Password = 'lfpg krbl kyae wnum'; // Thay đổi mật khẩu email người gửi
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -34,7 +34,6 @@ function sendWeeklyEmail() {
     }
 }
 
-sendWeeklyEmail();
 
 sendWeeklyEmail();
 ?>
