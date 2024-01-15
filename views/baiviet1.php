@@ -41,7 +41,6 @@
         </button>
     </li> 
 </ul>
-<center>
 <img src="../IMAGE/anhchualanh.png" alt="Ảnh chữa lành">
 
     <?php
