@@ -37,7 +37,14 @@
             margin-right: auto;
             display: block;
         }
-
+        h1 {
+    text-align: center;
+    color: #3498db; /* Màu xanh dương, có thể thay đổi theo sở thích của bạn */
+    font-size: 3em; /* Kích thước font chữ */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Hiệu ứng text shadow */
+    font-family: 'Arial', sans-serif; /* Font chữ, thay đổi nếu bạn muốn */
+  }
     </style>
 </head>
 
@@ -69,77 +76,33 @@
             </button>
         </li>
     </ul>
-    <center>
-        <div class="container" style="margin-top: 10px"></div>
-        <br><br><br><br>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-sm-12 border">
-                    <div id="slide_show" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="../IMAGE/nav1.jpg" class="d-block w-100" alt="Ảnh 1">
-    </div>
-    <div class="carousel-item">
-        <img src="../IMAGE/nav2.jpg" class="d-block w-100" alt="Ảnh 2">
-    </div>
-    <div class="carousel-item">
-        <img src="../IMAGE/nav3.jpg" class="d-block w-100" alt="Ảnh 3">
-    </div>
-    <div class="carousel-item">
-        <img src="../IMAGE/nav4.jpg" class="d-block w-100" alt="Ảnh 4">
-    </div>
-    <div class="carousel-item">
-        <img src="../IMAGE/nav5.jpg" class="d-block w-100" alt="Ảnh 5">
-    </div>
-    <div class="carousel-item">
-        <img src="../IMAGE/nav6.jpg" class="d-block w-100" alt="Ảnh 6">
-    </div>
+    <br><br><br><br>
+        <h1>Thế giới game giải căng thẳng </h1>
+        <br><br><br>
+
+            <div class="row justify-content-center text-center">
+    <?php
+    $games = array(
+        array('title' => 'Game Kéo Búa Bao', 'content' => 'Bạn và máy sẽ chơi cùng nhau', 'image' => '../IMAGE/gamekeobuabao.jpg', 'link' => 'gamekeobuabao.php'),
+        array('title' => 'Game Rắn Săn Mồi', 'content' => 'Game giải trí đơn giản cho bạn', 'image' => '../IMAGE/ransanmoi.png', 'link' => 'gameransanmoi.php'),
+        array('title' => 'Game Đoán số', 'content' => 'Cùng đoán số bí mật', 'image' => '../IMAGE/gamedoanso.png', 'link' => 'gamedoanso.php'),
+        array('title' => 'Game Phá Gạch', 'content' => 'Cùng nhau phá gạch', 'image' => '../IMAGE/gamephagach.jpg', 'link' => 'gamephagach.php'),
+        array('title' => 'Game Nhặt Quà', 'content' => 'Cùng nhau bắt quà trên trời', 'image' => '../IMAGE/gamevattrentroi.jpg', 'link' => 'gamevattrentroi.php'),
+        array('title' => 'Game XO', 'content' => 'Cùng nhau chơi XO', 'image' => '../IMAGE/XO.jpg', 'link' => 'gameXO.php'),
+    );
+
+    foreach ($games as $game) {
+        echo '<div class="col-lg-4 col-sm-6 content">';
+        echo '<img src="' . $game['image'] . '" alt="Ảnh trò chơi" class="img-fluid">';
+        echo '<h2>' . $game['title'] . '</h2>';
+        echo '<p>' . $game['content'] . '</p>';
+        echo '<a href="' . $game['link'] . '">Chơi ngay</a>';
+        echo '</div>';
+    }
+    ?>
 </div>
-<ul class="carousel-indicators">
-    <li data-target="#slide_show" data-slide-to="0" class="active"></li>
-    <li data-target="#slide_show" data-slide-to="1"></li>
-    <li data-target="#slide_show" data-slide-to="2"></li>
-    <li data-target="#slide_show" data-slide-to="3"></li>
-    <li data-target="#slide_show" data-slide-to="4"></li>
-    <li data-target="#slide_show" data-slide-to="5"></li>
-</ul>
-<a class="carousel-control-prev" href="#slide_show" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Trước</span>
-</a>
-<a class="carousel-control-next" href="#slide_show" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Tiếp theo</span>
-</a>
 
-                    </div>
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <?php
-                $games = array(
-                    
-                array('title' => 'Game Kéo Búa Bao', 'content' => 'Bạn và máy sẽ chơi cùng nhau', 'image' => '../IMAGE/gamekeobuabao.jpg', 'link' => 'gamekeobuabao.php'),
-                array('title' => 'Game Rắn Săn Mồi', 'content' => 'Game giải trí đơn giản cho bạn', 'image' => '../IMAGE/ransanmoi.png', 'link' => 'gameransanmoi.php'),
-                array('title' => 'Game Đoán số', 'content' => 'Cùng đoán số bí mật', 'image' => '../IMAGE/gamedoanso.png', 'link' => 'gamedoanso.php'),
-                array('title' => 'Game Phá Gạch', 'content' => 'Cùng nhau phá gạch', 'image' => '../IMAGE/gamephagach.jpg', 'link' => 'gamephagach.php'),
-                array('title' => 'Game Nhặt Quà', 'content' => 'Cùng nhau bắt quà trên trời', 'image' => '../IMAGE/gamevattrentroi.jpg', 'link' => 'gamevattrentroi.php'),
-                array('title' => 'Game XO', 'content' => 'Cùng nhau chơi XO', 'image' => '../IMAGE/XO.jpg', 'link' => 'gameXO.php'),
-            );
-
-            foreach ($games as $game) {
-                echo '<div class="col-lg-4 col-sm-6 content">';
-                echo '<img src="' . $game['image'] . '" alt="Ảnh trò chơi" class="img-fluid">';
-                echo '<h2>' . $game['title'] . '</h2>';
-                echo '<p>' . $game['content'] . '</p>';
-                echo '<a href="' . $game['link'] . '">Chơi ngay</a>';
-                echo '</div>';
-            }
-            ?>
-        </div>
-    </center>
+    
 </body>
 
 </html>
