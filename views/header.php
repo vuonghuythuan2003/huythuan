@@ -6,7 +6,6 @@
     <title>Bài Test </title>
     <link rel = "stylesheet" href = "../CSS/index.css">
     <link rel = "stylesheet" href = "../CSS/nav.css">
-
     <link rel="stylesheet" href="../CSS/bootstrap.min.css">  
     <script src="../JS/jquery-3.4.1.js"></script>
     <script src="../JS/popper.min.js"></script>
@@ -26,18 +25,15 @@
 
         <li><a href="#">Giải pháp</a></li>
         <li><a href="#">Bài Test</a></li>
-        <li><a href="#">Đăng nhập trải nghiệm thêm tính năng</a></li>
 
-        
         <li style="float: right; margin-right: 0px;">
-        <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
+        <button id="submit" style="padding: 7px 17px; color: white; background-color: orange; border: solid white;">
             <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
         </button>
     </li> 
 </ul>
 <center>
         <div class="container" style="margin-top: 10px"></div>
-        <br><br><br><br>
         <div class="container">
             <div class="rows" height="50px" width ="100px">
                 <div class="col-lg-8 col-sm-12 border">
@@ -97,7 +93,7 @@
 <p style="text-align: justify;">Bài test bao gồm 21 đề mục, hãy đọc cẩn thận tất cả các câu và chọn ra một đáp án gần giống nhất với <strong>tình trạng mà bạn cảm thấy trong 1 tuần trở lại đây</strong>, kể cả hôm nay.</p>
 <p style="text-align: justify;"><strong>Nguồn tham khảo:</strong></p>
 <p style="text-align: justify;"><a href="http://nimh.gov.vn/thang-danh-gia-tram-cam-beck-bdi/">Viện Sức khỏe Tâm thần, Bệnh viện Bạch Mai</a></p></div>
-<p style="background-color: aqua; color:blue"><a href="#">Bắt đầu</a>
+<p style="background-color: aqua; color:blue"><a href="../views/testform.php">Bắt đầu</a>
  </p>
 </body>
 </html> 
