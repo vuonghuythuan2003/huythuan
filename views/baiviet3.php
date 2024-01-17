@@ -8,13 +8,90 @@
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/nav.css">
     <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hmenu {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .hmenu a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .hmenu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .hmenu li {
+            float: left;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .hmenu ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f9f9f9;
+            padding: 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .hmenu li:hover ul {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .article {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .form-container {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    </style>
     <script src="../JS/jquery-3.4.1.js"></script>
     <script src="../JS/popper.min.js"></script>
     <script src="../JS/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-<ul class="hmenu">
+    <ul class="hmenu">
         <li><a href="#">Trang chủ</a></li>
         <li><a href="#">Tổng quan</a>
             <ul class="sub-menu">
@@ -27,7 +104,7 @@
         <li><a href="lienhe.php">Liên hệ</a></li>
 
         <li><a href="#">Giải pháp</a>
-        <ul class="sub-menu">
+            <ul class="sub-menu">
                 <li><a href="baiviet.php">Bài viết</a></li>
                 <li><a href="video.php">Video</a></li>
                 <li><a href="game.php">Game</a></li>
@@ -36,23 +113,28 @@
         <li><a href="#">Bài Test</a></li>
 
         <li style="float: right; margin-right: 0px;">
-        <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
-            <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
-        </button>
-    </li> 
-</ul>
-<img src="../IMAGE/5meodengu.jpg" alt="Ảnh chữa lành">
+            <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
+                <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
+            </button>
+        </li>
+    </ul>
+
+    <img src="../IMAGE/5meodengu.jpg" alt="Ảnh chữa lành">
 
     <?php
     
     $articleContent = "
     
-       <h1> 5 Cách dễ ngủ do bác sĩ đề xuất</h1><br>
-        
-Hàng đêm bạn mất rất nhiều thời gian để đi vào giấc ngủ? Hãy xem ngay 5 cách dễ ngủ do bác sĩ đề xuất để cải thiện ngay tình trạng này<br>
-        <h2>Mất ngủ, khó ngủ có thể phá hoại cơ thể bạn như thế nào</h2><br>
-        Nếu bạn bị mất ngủ, cả sức khỏe thể chất và tinh thần của bạn đều có thể bị ảnh hưởng. Bạn sẽ dễ bị đau đầu, suy giảm trí nhớ, kém tập trung trong công việc. Bạn cũng có thể bị lão hóa nhanh hơn và dẫn đến nhiều bệnh lý khác. Tinh thần của bạn không đủ tỉnh táo có thể làm bạn căng thẳng, mệt mỏi, dễ cáu gắt, tâm trạng thất thường và xuất hiện những cảm xúc tiêu cực.<br>
-<h2>5 cách dễ ngủ đề xuất bởi bác sĩ</h2><br>
+       <div class='article'>
+            <div class='article-content'>
+                <h1> 5 Cách dễ ngủ do bác sĩ đề xuất</h1><br>
+                <p>
+                    Hàng đêm bạn mất rất nhiều thời gian để đi vào giấc ngủ? Hãy xem ngay 5 cách dễ ngủ do bác sĩ đề xuất để cải thiện ngay tình trạng này.
+                </p>
+                <h2>Mất ngủ, khó ngủ có thể phá hoại cơ thể bạn như thế nào</h2><br>
+                <p>
+                    Nếu bạn bị mất ngủ, cả sức khỏe thể chất và tinh thần của bạn đều có thể bị ảnh hưởng. Bạn sẽ dễ bị đau đầu, suy giảm trí nhớ, kém tập trung trong công việc. Bạn cũng có thể bị lão hóa nhanh hơn và dẫn đến nhiều bệnh lý khác. Tinh thần của bạn không đủ tỉnh táo có thể làm bạn căng thẳng, mệt mỏi, dễ cáu gắt, tâm trạng thất thường và xuất hiện những cảm xúc tiêu cực.<br>
+                    <h2>5 cách dễ ngủ đề xuất bởi bác sĩ</h2><br>
 <h3>Phương pháp thở 4-7-8</h3><br>
 Đây là một phương pháp được phát triển bởi Tiến sĩ Andrew Weil, các thực hiện khá đơn giản và có thể mang lại hiệu quả nhất định. Công dụng của cách dễ ngủ này là giúp kiểm soát hơi thở, bổ sung oxy cho cơ thể giúp thư giãn hệ thần kinh để dễ đi vào giấc ngủ hơn.
 Cùng xem hướng dẫn chi tiết các bước như dưới đây:<br>
@@ -78,10 +160,28 @@ Chiếc giường chính là yếu tố trực tiếp, quan trọng cho giấc n
 Sử dụng các sản phẩm hỗ trợ cũng là cách dễ ngủ hay và được nhiều bác sĩ khuyên dùng. Một trong số đó là các loại tinh dầu có tác dụng thư giãn và dễ ngủ.<br>
 
 Một số hương phù hợp khá phổ biến, dễ tìm có thể kể đến như hương hoa oải hương, hoa hồng gấm, bạc hà, tinh dầu chanh cam<br>
-";
+                </p>
+       
 
-    echo $articleContent;
-    ?>
-</body>
+                </div>
 
-</html>
+                <div class='form-container'>
+                    <!-- Form điền thông tin -->
+                    <form action='#' method='post'>
+                        <label for='ten'>Tên:</label>
+                        <input type='text' id='ten' name='ten'><br>
+    
+                        <label for='email'>Email:</label>
+                        <input type='email' id='email' name='email'><br>
+    
+                        <input type='submit' value='Gửi'>
+                    </form>
+                </div>
+            </div>
+    ";
+    
+        echo $articleContent;
+        ?>
+    </body>
+    
+    </html>

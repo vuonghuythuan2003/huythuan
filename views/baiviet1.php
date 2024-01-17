@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<ul class="hmenu">
+    <ul class="hmenu">
         <li><a href="#">Trang chủ</a></li>
         <li><a href="#">Tổng quan</a>
             <ul class="sub-menu">
@@ -27,7 +27,7 @@
         <li><a href="lienhe.php">Liên hệ</a></li>
 
         <li><a href="#">Giải pháp</a>
-        <ul class="sub-menu">
+            <ul class="sub-menu">
                 <li><a href="baiviet.php">Bài viết</a></li>
                 <li><a href="video.php">Video</a></li>
                 <li><a href="game.php">Game</a></li>
@@ -36,19 +36,20 @@
         <li><a href="#">Bài Test</a></li>
 
         <li style="float: right; margin-right: 0px;">
-        <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
-            <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
-        </button>
-    </li> 
-</ul>
-<img src="../IMAGE/anhchualanh.png" alt="Ảnh chữa lành">
+            <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
+                <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
+            </button>
+        </li>
+    </ul>
 
-    <?php
-    
-    $articleContent = "
-    
-       <h1> 4 Phương pháp chữa lành tổn thương tâm lý</h1><br>
-        Bạn có đang cảm thấy đau buồn, lo âu, trầm cảm? Hãy thử 4 phương pháp chữa lành tổn thương tâm lý sau đây nhé<br>
+    <div style="display: flex; justify-content: space-between; margin: 20px;">
+        <div style="flex: 1;">
+            <h1 style="text-align: center;">4 Phương pháp chữa lành tổn thương tâm lý</h1><br>
+            <p>
+                Bạn có đang cảm thấy đau buồn, lo âu, trầm cảm? Hãy thử 4 phương pháp chữa lành tổn thương tâm lý sau đây nhé.
+            </p>
+        <img src='../IMAGE/4pchualanh.png' alt='Mô tả ảnh' style='width: 100%; max-width: 400px; height: auto;'>
+        <p>
         <h2>Tổn thương tâm lý là gì?</h2><br>
 Tổn thương tâm lý là một loại tổn thương về tinh thần và cảm xúc. Người bị tổn thương tâm lý thường gặp khó khăn trong cuộc sống khi khó duy trì được những mối quan hệ, không kiểm soát được cảm xúc của bản thân, khó khăn khi tiếp nhận nhiều sự việc hay con người, đặc biệt có thể dẫn đến những nguy cơ về sức khỏe thể chất.<br>
 
@@ -85,8 +86,24 @@ Nếu bạn cảm thấy mình không thể “tự chữa lành” hay đang ho
 
 Nhà trị liệu sẽ đánh giá tình trạng tâm lý, mức độ tổn thương của bạn để thiết kế liệu trình trị liệu phù hợp. Đồng thời, họ cũng là người đồng hành giúp bạn thay đổi nhận thức, từ từ giải quyết những rào cản tâm lý, cho những tổn thương dần dần phục hồi.<br>";
 
-    echo $articleContent;
-    ?>
+</p>
+    </div>
+    <div style="flex: 1; padding-left: 20px;">
+            <!-- Form điền thông tin -->
+            <form action="#" method="post">
+                <label for="ten">Tên:</label>
+                <input type="text" id="ten" name="ten"><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br>
+
+                <input type="submit" value="Gửi">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
 </body>
 
 </html>
