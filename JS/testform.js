@@ -1,65 +1,76 @@
 let currentQuestionIndex = 1;
+        const totalQuestions = 21; // Cập nhật tổng số câu hỏi
 
         function answerQuestion(value) {
-            // Your existing logic for handling question answers
+            // Các logic xử lý câu trả lời câu hỏi
         }
 
         function continueToNextQuestion() {
-            // Check if it's the last question
-            if (currentQuestionIndex === 21) {
-                // Show the "Complete" button
-                document.getElementById('completeButton').style.display = 'block';
+            const radioButtons = document.querySelectorAll(`.question${currentQuestionIndex} input[type="radio"]:checked`);
+            if (radioButtons.length === 0) {
+                alert('Vui lòng chọn một phương án trước khi tiếp tục.');
+                return;
+            }
 
-                // Hide the "Next" button
+            if (currentQuestionIndex === totalQuestions) {
+                document.getElementById('completeButton').style.display = 'block';
                 document.getElementById('nextButton').style.display = 'none';
             } else {
-                // Your existing logic for showing/hiding questions
                 document.querySelector(`.question${currentQuestionIndex}`).style.display = 'none';
                 currentQuestionIndex++;
                 document.querySelector(`.question${currentQuestionIndex}`).style.display = 'block';
+                document.getElementById('backButton').style.display = 'block';
+                // Hiển thị nút "Hoàn thành" khi ở câu hỏi cuối cùng
+                if (currentQuestionIndex === totalQuestions) {
+                    document.getElementById('nextButton').style.display = 'none';
+                    document.getElementById('completeButton').style.display = 'block';
+                }
+            }
+        }
+
+        function goBackToPreviousQuestion() {
+            if (currentQuestionIndex > 1) {
+                document.querySelector(`.question${currentQuestionIndex}`).style.display = 'none';
+                currentQuestionIndex--;
+                document.querySelector(`.question${currentQuestionIndex}`).style.display = 'block';
+                if (currentQuestionIndex === 1) {
+                    document.getElementById('backButton').style.display = 'none';
+                }
+                if (currentQuestionIndex < totalQuestions) {
+                    document.getElementById('nextButton').style.display = 'block';
+                    document.getElementById('completeButton').style.display = 'none';
+                }
             }
         }
 
         function completeSurvey() {
-            // Calculate total score based on answers
             var totalScore = calculateTotalScore();
-
-            // Display the score
             document.getElementById('userScoreDisplay').innerText = totalScore;
-
-            // Hide the questions and show the completion message
             document.querySelector('.question').style.display = 'none';
             document.querySelector('.completion').style.display = 'block';
-
-            // Send the total score to the server (you may want to use AJAX for this)
+            // Hiển thị nút "Quay lại" và "Hoàn thành" khi hoàn thành khảo sát
+            document.getElementById('backButton').style.display = 'block';
+            document.getElementById('completeButton').style.display = 'block';
             sendScoreToServer(totalScore);
         }
 
         function calculateTotalScore() {
-            // Your logic to calculate the total score based on user answers
-            // For simplicity, let's assume you sum up the values of all selected radio buttons
             var totalScore = 0;
-
             var radioButtons = document.querySelectorAll('input[type=radio]:checked');
-            radioButtons.forEach(function (radioButton) {
+            radioButtons.forEach(function(radioButton) {
                 totalScore += parseInt(radioButton.value);
             });
-
             return totalScore;
         }
 
         function sendScoreToServer(score) {
-            // Your logic to send the score to the server (you may want to use AJAX for this)
-            // For simplicity, I'm using a basic form submission
             var form = document.createElement('form');
             form.method = 'post';
-            form.action = '../ADMIN/connect.php'; // Create a PHP file to handle score saving
-
+            form.action = '../ADMIN/connect.php';
             var input = document.createElement('input');
             input.type = 'hidden';
             input.name = 'user_score';
             input.value = score;
-
             form.appendChild(input);
             document.body.appendChild(form);
             form.submit();

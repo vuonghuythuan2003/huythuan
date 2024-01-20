@@ -40,7 +40,7 @@ try {
     // Kiểm tra xem tài khoản có đang hoạt động hay không
     if (isUserLoggedIn()) {
         // Tài khoản đang hoạt động, chuyển hướng tới trang header.php
-        header('Location: ../views/header.php');
+        header('Location: da_dn.php');
         exit();
     } else {
         // Tài khoản không đang hoạt động
@@ -51,7 +51,7 @@ try {
 
             if (authenticateUser($conn, $username, $password)) {
                 // Đăng nhập thành công, chuyển hướng trực tiếp đến trang header.php
-                header('Location: ../views/header.php');
+                header('Location: da_dn.php');
                 exit();
             } else {
                 // Xác thực không thành công, thông báo lỗi hoặc yêu cầu đăng nhập lại

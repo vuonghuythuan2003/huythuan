@@ -29,7 +29,27 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
         <script src="../JS/popper.min.js"></script>
         <script src="../JS/bootstrap.bundle.min.js"></script>
     </head>
+    <style>
+        .greeting {
+            color: white;
+            padding: 7px 5px;
+            animation: flash 1s infinite;
+        }
 
+        @keyframes flash {
+
+            0%,
+            50%,
+            100% {
+                color: red;
+            }
+
+            25%,
+            75% {
+                color: yellow;
+            }
+        }
+    </style>
 
     <body>
         <form method="post" action="">
@@ -51,7 +71,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                     <input type="submit" name="logout_button" style="padding: 7px 17px; color: white; background-color: orange; border: solid white;" value="Đăng xuất">
                 </li>
                 <li style="float: right; margin-right: 10px;">
-                    <p style="color: white; padding: 7px 5px;">Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
+                    <p class="greeting">Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
                 </li>
             </ul>
         </form>
