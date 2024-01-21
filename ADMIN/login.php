@@ -40,7 +40,7 @@ try {
     // Kiểm tra xem tài khoản có đang hoạt động hay không
     if (isUserLoggedIn()) {
         // Tài khoản đang hoạt động, chuyển hướng tới trang header.php
-        header('Location: ../views/header.php');
+        header('Location: ../views/testform.php');
         exit();
     } else {
         // Tài khoản không đang hoạt động

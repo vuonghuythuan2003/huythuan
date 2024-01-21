@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // Kiểm tra xem có nút đăng xuất được nhấn hay không
 if (isset($_POST['logout_button'])) {
     // Hủy bỏ phiên đăng nhập và chuyển hướng về trang đăng nhập
@@ -15,57 +16,55 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     $loggedInUsername = $_SESSION['username'];
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bài Test</title>
-        <link rel="stylesheet" href="../CSS/index.css">
-        <link rel="stylesheet" href="../CSS/nav.css">
-        <link rel="stylesheet" href="../CSS/bootstrap.min.css">
-        <script src="../JS/jquery-3.4.1.js"></script>
-        <script src="../JS/popper.min.js"></script>
-        <script src="../JS/bootstrap.bundle.min.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Test</title>
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="../CSS/nav.css">
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.4.1.js"></script>
+    <script src="../JS/popper.min.js"></script>
+    <script src="../JS/bootstrap.bundle.min.js"></script>
+</head>
 
+<body>
+    <form method="post" action="">
+        <ul class="hmenu">
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Tổng quan</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Nguyên nhân</a></li>
+                    <li><a href="#">Đặc điểm</a></li>
+                    <li><a href="#">Triệu chứng</a></li>
+                    <li><a href="#">Đối tượng</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Giải pháp</a></li>
+            <li><a href="#">Bài Test</a></li>
 
-    <body>
-        <form method="post" action="">
-            <ul class="hmenu">
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Tổng quan</a>
-                    <ul class="sub-menu">
-                        <li><a href="#">Nguyên nhân</a></li>
-                        <li><a href="#">Đặc điểm</a></li>
-                        <li><a href="#">Triệu chứng</a></li>
-                        <li><a href="#">Đối tượng</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Liên hệ</a></li>
-                <li><a href="#">Giải pháp</a></li>
-                <li><a href="#">Bài Test</a></li>
+            <li style="float: right; margin-right: 0px;">
+                <input type="submit" name="logout_button" style="padding: 7px 17px; color: white; background-color: orange; border: solid white;" value="Đăng xuất">
+            </li>
+            <li style="float: right; margin-right: 10px;">
+                <p style="color: white; padding: 7px 5px;">Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
+            </li>
+        </ul>
+    </form>
+</body>
 
-                <li style="float: right; margin-right: 0px;">
-                    <input type="submit" name="logout_button" style="padding: 7px 17px; color: white; background-color: orange; border: solid white;" value="Đăng xuất">
-                </li>
-                <li style="float: right; margin-right: 10px;">
-                    <p style="color: white; padding: 7px 5px;">Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
-                </li>
-            </ul>
-        </form>
-
-
-    </body>
-
-    </html>
+</html>
 
 <?php
 } else {
     // Nếu người dùng chưa đăng nhập, có thể thêm xử lý tương ứng ở đây
     echo "Xin chào khách!";
 }
+
 ?>
 
 <?php
@@ -100,7 +99,7 @@ if (isset($_POST['user_score'])) {
     $userScore = intval($_POST['user_score']);
     $depressionStatus = classifyDepression($userScore);
 
-    // Kiểm tra xem bản ghi đã tồn tại hay chưa
+    // Kiểm tra xem bản ghi đã tồn tại hay chưa trong bảng user_tests
     $checkQuery = "SELECT id_name FROM user_tests WHERE id_name = '$userId'";
     $checkResult = $conn->query($checkQuery);
 
@@ -124,6 +123,17 @@ if (isset($_POST['user_score'])) {
             echo '<p style="font-weight: bold; color: #0077cc;">Điểm của bạn là: <span id="userScoreDisplay" style="font-weight: bold; color: #0077cc;">' . $userScore . '</span></p>';
             echo '<p style="font-weight: bold; color: #0077cc;">Đánh giá mức độ theo thang điểm Beck: ' . $depressionStatus . '</p>';
             echo '</div>';
+
+            // Sau khi hoàn thành phần user_tests, thêm vào bảng test
+            $insertTestQuery = "INSERT INTO test (id_name, username, fullname, test5) 
+                                VALUES ('$userId', '$username', '$fullname', '$userScore - $depressionStatus') 
+                                ON DUPLICATE KEY UPDATE test5 = '$userScore - $depressionStatus'";
+
+            if ($conn->query($insertTestQuery) === TRUE) {
+                echo "Dữ liệu đã được cập nhật thành công trong bảng test.";
+            } else {
+                echo "Lỗi khi thêm dữ liệu vào bảng test: " . $conn->error;
+            }
         } else {
             echo "Lỗi khi thêm dữ liệu vào CSDL: " . $conn->error;
         }
@@ -135,4 +145,5 @@ if (isset($_POST['user_score'])) {
 
 // Đóng kết nối CSDL
 $conn->close();
+
 ?>
