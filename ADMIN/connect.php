@@ -46,6 +46,7 @@
         $conn->close();
     }
 
+    
     function interpretBDIScore($score) {
         if ($score < 14) {
             return "Không biểu hiện trầm cảm";
