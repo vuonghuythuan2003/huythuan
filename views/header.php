@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST['logout_button'])) {
     // Hủy bỏ phiên đăng nhập và chuyển hướng về trang đăng nhập
     session_destroy();
-    header('Location: vd_dn.php');
+    header('Location: ../ADMIN/login.php');
     exit();
 }
 
@@ -45,7 +45,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 </li>
                 <li><a href="#">Liên hệ</a></li>
                 <li><a href="#">Giải pháp</a></li>
-                <li><a href="#">Bài Test</a></li>
+                <li><a href="#">Bài Test</a>
+                    <ul class="sub-menu">
+                        <li><a href="testform.php">Bài Test Chính</a></li>
+                        <li><a href="test1.php">Bài Test 1</a></li>
+                        <li><a href="test2.php">Bài Test 2</a></li>
+                        <li><a href="test3.php">Bài Test 3</a></li>
+                        <li><a href="test4.php">Bài Test 4</a></li>
+                    </ul>
+                </li>
 
                 <li style="float: right; margin-right: 0px;">
                     <input type="submit" name="logout_button" style="padding: 7px 17px; color: white; background-color: orange; border: solid white;" value="Đăng xuất">
@@ -56,7 +64,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             </ul>
         </form>
 
-        <center>
+        <!-- <center>
 
             <div class="container" style="margin-top: 10px"></div>
             <div class="container">
@@ -103,7 +111,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                     </div>
                 </div>
             </div>
-        </center>
+        </center> -->
 
         <div style="margin: 50px;">
             <h2 style="text-align: justify;">Bài test đánh giá mức độ trầm cảm BECK&nbsp;</h2>

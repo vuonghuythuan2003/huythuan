@@ -36,7 +36,6 @@
   ?>
 
 
-
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -60,7 +59,6 @@
                         <button type="submit" name="nutdangnhap" class="btn btn-primary">Login</button>
                         <p>Not a member? <span class="signup"><a href ="signup.php">Sign Up</a></span></p>
                         <p><span class="signup"><a href ="quenmk.php">Quên mật khẩu</a></span></p>
-
                     </div>
                 </div>
             </div>
