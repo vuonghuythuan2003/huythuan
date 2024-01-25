@@ -23,8 +23,6 @@ if ($conn->connect_error) {
 
 // Lấy thông tin từ phiên
 $userId = $_SESSION['user_id'];
-$username = $_SESSION['username'];
-$fullname = $_SESSION['fullname'];
 
 // Lấy điểm từ cuộc khảo sát
 if (isset($_POST['user_score'])) {
@@ -32,8 +30,8 @@ if (isset($_POST['user_score'])) {
     $tramCamStatus = phanLoaiTramCam($userScore);
 
     // Cập nhật giá trị test2 trực tiếp
-    $capNhatQuery = "UPDATE user_tests SET test2 = '$userScore ', time_taken = NOW(), next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) WHERE id_name = '$userId'";
-
+    $capNhatQuery = "UPDATE user_tests SET test2 = '$userScore', time_taken = NOW(), next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) WHERE id_name = '$userId'";
+    
     if ($conn->query($capNhatQuery) === TRUE) {
         // Display the completion message with CSS styling
         echo '<div class="completion" style="background-color: #e6f7ff; padding: 10px; border: 1px solid #66b2ff; border-radius: 5px; margin-top: 20px;">';
@@ -51,3 +49,4 @@ if (isset($_POST['user_score'])) {
 
 // Đóng kết nối CSDL
 $conn->close();
+?>

@@ -36,11 +36,11 @@ if (isset($_POST['user_score'])) {
     SET test4 = '$userScore', 
         time_taken = NOW(), 
         next_test_time = NOW(),
-        test_tb = CONCAT((test1 + test2 + test3 + '$userScore') / 4, ' - ', 
+        test_tb = CONCAT((test1 + test2 + test3 + '$userScore') / 2, ' - ', 
                         CASE
-                            WHEN (test1 + test2 + test3 + '$userScore') / 4 < 14 THEN 'Không biểu hiện trầm cảm'
-                            WHEN (test1 + test2 + test3 + '$userScore') / 4 >= 14 AND (test1 + test2 + test3 + '$userScore') / 4 <= 19 THEN 'Trầm cảm nhẹ'
-                            WHEN (test1 + test2 + test3 + '$userScore') / 4 >= 20 AND (test1 + test2 + test3 + '$userScore') / 4 <= 29 THEN 'Trầm cảm vừa'
+                            WHEN (test1 + test2 + test3 + '$userScore') / 2 < 14 THEN 'Không biểu hiện trầm cảm'
+                            WHEN (test1 + test2 + test3 + '$userScore') / 2 >= 14 AND (test1 + test2 + test3 + '$userScore') / 2 <= 19 THEN 'Trầm cảm nhẹ'
+                            WHEN (test1 + test2 + test3 + '$userScore') / 2 >= 20 AND (test1 + test2 + test3 + '$userScore') / 2 <= 29 THEN 'Trầm cảm vừa'
                             ELSE 'Trầm cảm nặng'
                         END)
     WHERE id_name = '$userId'";

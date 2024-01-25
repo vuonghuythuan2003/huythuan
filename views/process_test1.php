@@ -31,16 +31,21 @@ if (isset($_POST['user_score'])) {
     $userScore = intval($_POST['user_score']);
     $tramCamStatus = phanLoaiTramCam($userScore);
 
-    // Cập nhật giá trị test1 trực tiếp
-    $capNhatQuery = "UPDATE user_tests SET test1 = '$userScore - $tramCamStatus', time_taken = NOW(), next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) WHERE id_name = '$userId'";
+    // Cập nhật giá trị test1, time_taken, next_test_time
+    $capNhatQuery = "UPDATE user_tests 
+                    SET test1 = '$userScore', 
+                        time_taken = NOW(), 
+                        next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) 
+                    WHERE id_name = '$userId'";
     
     if ($conn->query($capNhatQuery) === TRUE) {
-        // Display the completion message with CSS styling
+        // Hiển thị thông báo hoàn thành với CSS styling
         echo '<div class="completion" style="background-color: #e6f7ff; padding: 10px; border: 1px solid #66b2ff; border-radius: 5px; margin-top: 20px;">';
         echo '<p style="font-weight: bold; color: #0077cc;">Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>';
         echo '<p style="font-weight: bold; color: #0077cc;">Điểm của bạn là: <span id="userScoreDisplay" style="font-weight: bold; color: #0077cc;">' . $userScore . '</span></p>';
         echo '<p style="font-weight: bold; color: #0077cc;">Đánh giá mức độ theo thang điểm Beck: ' . $tramCamStatus . '</p>';
-        echo '</div>';    } else {
+        echo '</div>';
+    } else {
         echo "Lỗi khi cập nhật dữ liệu trong CSDL: " . $conn->error;
     }
 } else {

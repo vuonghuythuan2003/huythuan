@@ -1,3 +1,7 @@
+<!-- idgroup =0 => user
+idgroup =1 => admin
+ -->
+
 <?php
 session_start();
 
@@ -52,7 +56,7 @@ try {
             exit();
         } elseif ($idgroup_result == 1) {
             // Nếu idgroup = 1, chuyển hướng tới trang admin.php
-            header('Location: ../views/header.php');
+            header('Location: ../ADMIN/qly_admin.php');
             exit();
         }
     } else {
@@ -76,7 +80,7 @@ try {
                     exit();
                 } elseif ($idgroup_result == 1) {
                     // Nếu idgroup = 1, chuyển hướng tới trang admin.php
-                    header('Location: ../views/header.php');
+                    header('Location: ../ADMIN/qly_admin.php');
                     exit();
                 }
             } else {

@@ -6,9 +6,10 @@ if ($conn->connect_error) {
     die("Kết nối CSDL thất bại: " . $conn->connect_error);
 }
 
+
 // Truy vấn lấy dữ liệu từ bảng user_tests
-$query = "SELECT * FROM user_tests";
-$result = $conn->query($query);
+$queryUserTests = "SELECT * FROM user_tests ";
+$resultUserTests = $conn->query($queryUserTests);
 
 // Đóng kết nối CSDL
 $conn->close();
@@ -16,18 +17,78 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Tests Table</title>
+    <title>Quản lý điểm khảo sát</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #f2f2f2;
+            padding: 20px;
+            display: flex;
+            justify-content: left;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+            margin-right: 50px;
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #0077cc;
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            top: -20%;
+            right: -30px;
+            /* Khoảng cách của đường gạch từ mục */
+            height: 140%;
+            /* Chiều cao của đường gạch */
+            border-right: 1px solid #333;
+            /* Màu và kiểu đường gạch */
+        }
+
+        nav li:last-child::after {
+            display: none;
+            /* Ẩn đường gạch cho mục cuối cùng */
+        }
+
+        h3 {
+            margin-top: 5%;
+        }
+
         table {
             font-family: Arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid black;
             text-align: left;
             padding: 8px;
@@ -48,8 +109,17 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
-    <h2>User Tests Table</h2>
+    <nav>
+        <ul>
+            <li><a href="qly_admin.php">Trang quản lý ADMIN</a></li>
+            <li><a href="qly_user.php">Quản lý người dùng</a></li>
+            <li><a href="qly_DiemTest.php">Quản lý điểm khảo sát</a></li>
+        </ul>
+    </nav>
+
+    <h3>Bảng Quản Lý Điểm Khảo Sát Người Dùng</h3>
     <table>
         <thead>
             <tr>
@@ -65,14 +135,16 @@ $conn->close();
                 <th>Time Start</th>
                 <th>Time Taken</th>
                 <th>Next Test Time</th>
+                <th>Chỉnh sửa</th>
+                <th>Xóa</th>
             </tr>
         </thead>
         <tbody>
             <?php
             // Hiển thị dữ liệu từ kết quả truy vấn
-            if ($result->num_rows > 0) {
+            if ($resultUserTests->num_rows > 0) {
                 $stt = 1;
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $resultUserTests->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>{$stt}</td>";
                     echo "<td>{$row['username']}</td>";
@@ -86,15 +158,11 @@ $conn->close();
                     echo "<td>{$row['time_start']}</td>";
                     echo "<td>{$row['time_taken']}</td>";
                     echo "<td>{$row['next_test_time']}</td>";
+                    echo "<td><a href='#' class='edit-link'>Chỉnh sửa</a></td>";
+                    echo "<td><a href='#' class='delete-link'>Xóa</a></td>";
                     echo "</tr>";
-
                     $stt++;
                 }
-
-                // Dòng "Xem tất cả người dùng..."
-                echo "<tr class='view-all-row'>";
-                echo "<td colspan='12'><a href='#' class='view-all-link'>Xem tất cả người dùng...</a></td>";
-                echo "</tr>";
             } else {
                 echo "<tr><td colspan='12'>Không có dữ liệu</td></tr>";
             }
@@ -102,4 +170,5 @@ $conn->close();
         </tbody>
     </table>
 </body>
+
 </html>

@@ -106,7 +106,7 @@ if (isset($_POST['user_score'])) {
 
     if ($checkResult->num_rows > 0) {
         // Nếu bản ghi đã tồn tại, bạn có thể cập nhật nó thay vì chèn mới.
-        $updateQuery = "UPDATE user_tests SET testmain = '$userScore - $depressionStatus', time_taken = NOW(), next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) WHERE id_name = '$userId'";
+        $updateQuery = "UPDATE user_tests SET testmain = '$userScore - $depressionStatus',time_start  = NOW(), time_taken = NOW(), next_test_time = DATE_ADD(NOW(), INTERVAL 1 WEEK) WHERE id_name = '$userId'";
         if ($conn->query($updateQuery) === TRUE) {
             echo "Dữ liệu đã được cập nhật thành công trong CSDL. Điểm và loại trầm cảm: $userScore - $depressionStatus <br>";
         } else {
