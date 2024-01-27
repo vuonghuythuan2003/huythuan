@@ -44,8 +44,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
         <style>
             body {
                 font-family: Arial, sans-serif;
-                margin: 0;
+                margin: 0 5px 50px 10px;
                 padding: 0;
+
             }
 
             nav {
@@ -125,8 +126,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             }
 
 
-            h3 {
+            /* h3 {
                 margin-top: 5%;
+                text-decoration: none;
+                font-weight: bold;
+            } */
+
+            a.bang-title {
+                margin: 5% 0 2% 2%;
+                text-decoration: none;
+                font-weight: bold;
+                color: #333;
+                /* Đổi màu chữ cho tiêu đề */
+                font-size: 20px;
+                /* Đổi kích thước chữ cho tiêu đề */
+                display: block;
+                /* Chuyển đổi sang block để có thể sử dụng margin-top */
             }
 
             table {
@@ -176,10 +191,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 </ul>
             </nav>
         </form>
-        <h3> Bảng Quản Lý Người Dùng</h3>
+        <a href="qly_user.php" class="bang-title">Bảng Quản Lý Người Dùng</a>
         <form method="post" action="search_user.php">
             <label for="search_input">Tìm kiếm:</label>
-            <input type="text" id="search_input" name="search_input" >
+            <input type="text" id="search_input" name="search_input">
             <input type="submit" name="search_button" value="Tìm kiếm">
         </form>
         <table>
@@ -210,14 +225,14 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                         echo "<td>{$row['email']}</td>";
                         echo "<td>{$row['date']}</td>";
                         echo "<td>{$row['ngaydangky']}</td>";
-                        echo "<td><a href='edit_user.php?id={$row['id']}'>Chỉnh sửa</a></td>";
-                        echo "<td><a href='delete_user.php?id={$row['id']}'>Xóa</a></td>";
+                        echo "<td><a href='edit_adminUser.php?id={$row['id']}'>Chỉnh sửa</a></td>";
+                        echo "<td><a href='delete_qly_user.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
                     }
 
                     // Dòng "Xem tất cả người dùng..."
                     echo "<tr class='view-all-row'>";
-                    echo "<td colspan='9'><a href='#' class='view-all-link'>Xem tất cả người dùng...</a></td>";
+                    echo "<td colspan='9'><a href='qly_user.php' class='view-all-link'>Xem tất cả người dùng...</a></td>";
                     echo "</tr>";
                 } else {
                     echo "<tr><td colspan='9'>Không có dữ liệu</td></tr>";
@@ -226,10 +241,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             </tbody>
         </table>
 
-        <h3>Bảng Quản Lý Điểm Khảo Sát Người Dùng</h3>
-        <form method="post"  action="search_user_tests.php">
+        <a href="qly_DiemTest.php" class="bang-title">Bảng Quản Lý Điểm Khảo Sát Người Dùng</a>
+        <form method="post" action="search_user_tests.php">
             <label for="search_input">Tìm kiếm:</label>
-            <input type="text" id="search_input" name="search_input" >
+            <input type="text" id="search_input" name="search_input">
             <input type="submit" name="search_button" value="Tìm kiếm">
         </form>
         <table>
@@ -270,14 +285,14 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                         echo "<td>{$row['time_start']}</td>";
                         echo "<td>{$row['time_taken']}</td>";
                         echo "<td>{$row['next_test_time']}</td>";
-                        echo "<td><a href='edit_test.php?id={$row['id']}'>Chỉnh sửa</a></td>";
-                        echo "<td><a href='delete_test.php?id={$row['id']}'>Xóa</a></td>";
+                        echo "<td><a href='edit_adminTest.php?id={$row['id']}'>Chỉnh sửa</a></td>";
+                        echo "<td><a href='delete_admin_test.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
                     }
 
                     // Dòng "Xem tất cả người dùng..."
                     echo "<tr class='view-all-row'>";
-                    echo "<td colspan='14'><a href='#' class='view-all-link'>Xem tất cả người dùng...</a></td>";
+                    echo "<td colspan='14'><a href='qly_DiemTest.php' class='view-all-link'>Xem tất cả người dùng...</a></td>";
                     echo "</tr>";
                 } else {
                     echo "<tr><td colspan='14'>Không có dữ liệu</td></tr>";

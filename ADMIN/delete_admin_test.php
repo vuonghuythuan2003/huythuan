@@ -15,16 +15,16 @@
         // Nhận giá trị ID từ tham số GET
         $id = $_GET['id'];
 
-        // Thực hiện truy vấn xóa trong bảng user_tests trước
-        $sql_user_tests = "DELETE FROM user_tests WHERE id_name='$id'";
-        mysqli_query($conn, $sql_user_tests);
+        // In giá trị ID ra màn hình
+        echo "ID của tài khoản cần xóa là: $id";
 
-        // Tiếp theo, thực hiện truy vấn xóa trong bảng t_user
+        // Thực hiện truy vấn xóa
         $sql_user = "DELETE FROM t_user WHERE id='$id'";
         mysqli_query($conn, $sql_user);
 
         // Chuyển hướng về trang quản lý tài khoản sau khi xóa
-        header('Location: qly_user.php');
+        header('Location: qly_admin.php');
+        echo "ID của tài khoản đã xóa là: $id";
     }
 
     // Đóng kết nối

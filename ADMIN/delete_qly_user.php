@@ -24,7 +24,7 @@
         mysqli_query($conn, $sql_user);
 
         // Chuyển hướng về trang quản lý tài khoản sau khi xóa
-        header('Location: qly_user.php');
+        header('Location: qly_admin.php');
     }
 
     // Đóng kết nối
