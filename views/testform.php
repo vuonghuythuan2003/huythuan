@@ -300,9 +300,11 @@
         </div>
 
         <!-- Nút "Quay lại", "Tiếp tục" và "Hoàn thành" -->
-        <button id="backButton" onclick="goBackToPreviousQuestion()" style="display: none;">Quay lại</button>
-        <button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
         <button id="completeButton" onclick="completeSurvey()" style="display: none;" name="test1" >Hoàn thành</button>
+        <button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
+        <button id="backButton" onclick="goBackToPreviousQuestion()" style="display: none;">Quay lại</button>
+
+
     </div>
 
 </body>

@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -49,33 +49,9 @@
 </head>
 
 <body>
-    <ul class="hmenu">
-        <li><a href="#">Trang chủ</a></li>
-        <li><a href="#">Tổng quan</a>
-            <ul class="sub-menu">
-                <li><a href="#">Nguyên nhân</a></li>
-                <li><a href="#">Đặc điểm</a></li>
-                <li><a href="#">Triệu chứng</a></li>
-                <li><a href="#">Đối tượng</a></li>
-            </ul>
-        </li>
-        <li><a href="lienhe.php">Liên hệ</a></li>
-
-        <li><a href="#">Giải pháp</a>
-            <ul class="sub-menu">
-                <li><a href="baiviet.php">Bài viết</a></li>
-                <li><a href="video.php">Video</a></li>
-                <li><a href="game.php">Game</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Bài Test</a></li>
-
-        <li style="float: right; margin-right: 0px;">
-            <button id="submit" style="padding: 10px 20px; color: white; background-color: orange; border: solid white;">
-                <a href="#" style="text-decoration: none; color: #ffffff;">Đăng xuất</a>
-            </button>
-        </li>
-    </ul>
+    <?php
+        include "menu.html"
+    ?>
     <br><br><br><br>
         <h1>Thế giới game giải căng thẳng </h1>
         <br><br><br>
@@ -101,7 +77,9 @@
     }
     ?>
 </div>
-
+<?php
+    include "footer.html"
+?>
     
 </body>
 

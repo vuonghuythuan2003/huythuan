@@ -1,0 +1,33 @@
+.footer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color:hwb(259 2% 76%);
+    color: #fff;
+}
+
+.footer-info {
+    flex-basis: 30%;
+    margin-right: 2%;
+    line-height: 1.5;
+}
+
+.footer-info a {
+    color: #4d79ff;
+    text-decoration: none;
+}
+
+.footer-about,
+.footer-menu {
+    flex-basis: 34%;
+    margin-bottom: 20px;
+}
+
+.footer-about h2,
+.footer-menu h2 {
+    margin-bottom: 10px;
+}

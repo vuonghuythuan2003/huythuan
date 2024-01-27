@@ -8,18 +8,11 @@ if ($conn->connect_error) {
     die("Kết nối CSDL thất bại: " . $conn->connect_error);
 }
 
-// Truy vấn lấy dữ liệu từ bảng t_user (chỉ hiển thị 10 người dùng đầu tiên)
-$queryUsers = "SELECT id, username, fullname, email, date, ngaydangky FROM t_user LIMIT 10";
-$resultUsers = $conn->query($queryUsers);
-
-// Truy vấn lấy dữ liệu từ bảng user_tests
-$queryUserTests = "SELECT * FROM user_tests LIMIT 10";
-$resultUserTests = $conn->query($queryUserTests);
 // Kiểm tra xem có nút đăng xuất được nhấn hay không
 if (isset($_POST['logout_button'])) {
     // Hủy bỏ phiên đăng nhập và chuyển hướng về trang đăng nhập
     session_destroy();
-    header('Location: ../ADMIN/login.php');
+    header('Location: login.php');
     exit();
 }
 
@@ -28,6 +21,15 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     // Nếu người dùng đã đăng nhập, lấy thông tin từ phiên
     $loggedInFullname = $_SESSION['fullname'];
     $loggedInUsername = $_SESSION['username'];
+
+    // Truy vấn lấy dữ liệu từ bảng t_user (chỉ hiển thị 10 người dùng đầu tiên)
+    $queryUsers = "SELECT id, username, fullname, email, date, ngaydangky FROM t_user LIMIT 10";
+    $resultUsers = $conn->query($queryUsers);
+
+    // Truy vấn lấy dữ liệu từ bảng user_tests
+    $queryUserTests = "SELECT * FROM user_tests LIMIT 10";
+    $resultUserTests = $conn->query($queryUserTests);
+
     // Đóng kết nối CSDL
     $conn->close();
 ?>
@@ -157,20 +159,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     </head>
 
     <body>
-        <nav>
-            <ul>
-                <li><a href="qly_admin.php">Trang quản lý ADMIN</a></li>
-                <li><a href="qly_user.php">Quản lý người dùng</a></li>
-                <li><a href="qly_DiemTest.php">Quản lý điểm khảo sát</a></li>
-                <li style="float: right; " class="user-info">
-                    <p>Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
-                </li>
-                <li style="float: right; margin-top: 5px;">
-                    <input type="submit" name="logout_button" class="logout-button" value="Đăng xuất">
-                </li>
+        <form method="post">
+            <nav>
+                <ul>
+                    <li><a href="qly_admin.php">Trang quản lý ADMIN</a></li>
+                    <li><a href="qly_user.php">Quản lý người dùng</a></li>
+                    <li><a href="qly_DiemTest.php">Quản lý điểm khảo sát</a></li>
+                    <li style="float: right; " class="user-info">
+                        <p>Xin chào, <?php echo $loggedInFullname; ?> (<?php echo $loggedInUsername; ?>)</p>
+                    </li>
+                    <li style="float: right; margin-right: 0px;">
+                        <input type="submit" name="logout_button" class="logout-button" value="Đăng xuất">
+                    </li>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+        </form>
         <h3> Bảng Quản Lý Người Dùng</h3>
         <table>
             <thead>

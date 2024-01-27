@@ -1,8 +1,4 @@
-<!-- idgroup =0 => user
-idgroup =1 => admin
- -->
-
-<?php
+ <?php
 session_start();
 
 // Hàm kiểm tra đăng nhập

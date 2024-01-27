@@ -1,6 +1,7 @@
 <?php
 $loi = "";
-if (isset($_POST["btndangki"])) {
+
+if (isset($_POST["btndangki"]) == true) {
   $username = $_POST["username"];
   $password = $_POST["password"];
   $fullname = $_POST["fullname"];
@@ -27,27 +28,26 @@ if (isset($_POST["btndangki"])) {
   }
 
   if ($loi == "") {
-    try {
-      $conn = new PDO("mysql:host=localhost; dbname=nckh; charset=utf8", "root");
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = new PDO("mysql:host=localhost; dbname=nckh; charset=utf8", "root");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO t_user SET username=?, password=?, fullname=?, email=?, date=?, randomkey=?, active=?";
+    $st = $conn->prepare($sql);
+    $randomkey = substr(md5(rand(0, 99999)), 0, 20);
+    $st->execute([$username, $password, $fullname, $email, $date, $randomkey, 0]);
+    $id = $conn->lastInsertId();
+    $randomkeyWithId = $randomkey . $id;
 
-      $randomkey = substr(md5(rand(0, 99999)), 0, 20);
-      $sql = "INSERT INTO t_user (username, password, fullname, email, date, randomkey, active) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      $st = $conn->prepare($sql);
-      $st->execute([$username, $password, $fullname, $email, $date, $randomkey, 0]);
+    // Thêm thông tin người dùng vào bảng user_tests
+    $sql_insert_user_tests = "INSERT INTO user_tests (id_name, username, fullname) VALUES (?, ?, ?)";
+    $stmt_insert_user_tests = $conn->prepare($sql_insert_user_tests);
+    $stmt_insert_user_tests->execute([$id, $username, $fullname]);
 
-      $id = $conn->lastInsertId();
-      $randomkeyWithId = $randomkey . $id;
+    $sqlUpdate = "UPDATE t_user SET randomkey = ? WHERE id = ?";
+    $stUpdate = $conn->prepare($sqlUpdate);
+    $stUpdate->execute([$randomkeyWithId, $id]);
 
-      $sqlUpdate = "UPDATE t_user SET randomkey = ? WHERE id = ?";
-      $stUpdate = $conn->prepare($sqlUpdate);
-      $stUpdate->execute([$randomkeyWithId, $id]);
-
-      GuiMail($conn, $email, $fullname, $id, $randomkey);
-      header('Location: login.php');
-    } catch (PDOException $e) {
-      echo "Error: " . $e->getMessage();
-    }
+    GuiMail($conn, $email, $fullname, $id, $randomkey);
+    header('Location: login.php');
   }
 }
 
@@ -58,12 +58,43 @@ function GuiMail($conn, $email, $fullname, $idUser, $randomkey)
   require 'PHPMailer-master/src/Exception.php';
   $mail = new PHPMailer\PHPMailer\PHPMailer(true);
   try {
-    // Rest of your email sending code...
+    $mail->SMTPDebug = 0;
+    $mail->isSMTP();
+    $mail->CharSet = "utf-8";
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'batungnguyen78@gmail.com';
+    $mail->Password = 'mxea rvjt gqqt zmtd';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+    $mail->setFrom('batungnguyen78@gmail.com', 'MindWell');
+    $mail->addAddress($email, $fullname);
+    $mail->isHTML(true);
+    $mail->Subject = 'Thư kích hoạt tài khoản';
+    $noidungthu = "<h1>Thư kích hoạt tài khoản</h1>
+            Xin chúc mừng Bạn đã kích hoạt tài khoản thành công, vui lòng quay lại trang để tiến hành đăng nhập
+        ";
+    $mail->Body = $noidungthu;
+    $mail->smtpConnect(array(
+      "ssl" => array(
+        "verify_peer" => false,
+        "verify_peer_name" => false,
+        "allow_self_signed" => true
+      )
+    ));
+    $mail->send();
+    $sqlUpdateActive = "UPDATE t_user SET active = 1 WHERE id = ?";
+    $stUpdateActive = $conn->prepare($sqlUpdateActive);
+    $stUpdateActive->execute([$idUser]);
+    echo 'Đã gửi mail xong';
   } catch (Exception $e) {
     echo 'Error: ', $mail->ErrorInfo;
   }
 }
 ?>
+
+<!-- Tiếp theo là đoạn mã HTML -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,7 +146,7 @@ function GuiMail($conn, $email, $fullname, $idUser, $randomkey)
     <script>
       function checkun(obj) {
         var username = obj.value;
-        var url = "http://localhost/NCKH/ADMIN/dangky_check.php?username=" + username;
+        var url = "http://localhost/NCKH/huythuan/ADMIN/dangky_check.php?username=" + username;
         fetch(url)
           .then(d => d.json())
           .then(data => {
@@ -128,7 +159,7 @@ function GuiMail($conn, $email, $fullname, $idUser, $randomkey)
 
       function checkemail(obj) {
         var email = obj.value;
-        var url = "http://localhost/NCKH/ADMIN/dangky_check2.php?email=" + email;
+        var url = "http://localhost/NCKH/huythuan/ADMIN/dangky_check2.php?email=" + email;
         fetch(url)
           .then(d => d.json())
           .then(data => {
