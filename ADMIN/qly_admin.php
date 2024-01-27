@@ -204,8 +204,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                         echo "<td>{$row['email']}</td>";
                         echo "<td>{$row['date']}</td>";
                         echo "<td>{$row['ngaydangky']}</td>";
-                        echo "<td><a href='#' class='edit-link'>Chỉnh sửa</a></td>";
-                        echo "<td><a href='#' class='delete-link'>Xóa</a></td>";
+                        echo "<td><a href='edit_user.php?id={$row['id']}'>Chỉnh sửa</a></td>";
+                        echo "<td><a href='delete_user.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
                     }
 
@@ -259,8 +259,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                         echo "<td>{$row['time_start']}</td>";
                         echo "<td>{$row['time_taken']}</td>";
                         echo "<td>{$row['next_test_time']}</td>";
-                        echo "<td><a href='#' class='edit-link'>Chỉnh sửa</a></td>";
-                        echo "<td><a href='#' class='delete-link'>Xóa</a></td>";
+                        echo "<td><a href='edit_test.php?id={$row['id']}'>Chỉnh sửa</a></td>";
+                        echo "<td><a href='delete_test.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
                     }
 
