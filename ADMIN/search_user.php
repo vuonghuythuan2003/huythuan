@@ -22,10 +22,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     $loggedInFullname = $_SESSION['fullname'];
     $loggedInUsername = $_SESSION['username'];
 
-    // Truy vấn lấy dữ liệu từ bảng user_tests
-    $queryUserTests = "SELECT * FROM user_tests";
-    $resultUserTests = $conn->query($queryUserTests);
+    // Handle search
+    if (isset($_POST['search_button'])) {
+        $searchInput = $_POST['search_input'];
+        $queryUsers = "SELECT id, username, fullname, email, date, ngaydangky, idgroup FROM t_user 
+                       WHERE username LIKE '%$searchInput%' OR
+                             fullname LIKE '%$searchInput%' OR
+                             email LIKE '%$searchInput%' OR
+                             date LIKE '%$searchInput%' OR
+                             ngaydangky LIKE '%$searchInput%' OR
+                             idgroup LIKE '%$searchInput%'
+                       LIMIT 10";
+    } else {
+        $queryUsers = "SELECT id, username, fullname, email, date, ngaydangky, idgroup FROM t_user LIMIT 10";
+    }
 
+    $resultUsers = $conn->query($queryUsers);
     // Đóng kết nối CSDL
     $conn->close();
 ?>
@@ -36,7 +48,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quản lý điểm khảo sát</title>
+        <title>Quản lý người dùng và điểm khảo sát</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -45,8 +57,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             }
 
             nav {
+                margin-top: 10px;
                 background-color: #f2f2f2;
-                padding: 20px;
+                padding: 15px;
                 display: flex;
                 justify-content: left;
             }
@@ -56,15 +69,21 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 margin: 0;
                 padding: 0;
                 display: flex;
+                align-items: center;
+                /* Căn giữa dọc */
             }
 
             nav li {
                 margin-left: 30px;
                 margin-right: 50px;
                 position: relative;
+                display: flex;
+                align-items: center;
+                /* Căn giữa dọc */
             }
 
             nav a {
+                margin-top: 10px;
                 text-decoration: none;
                 color: #333;
                 font-weight: bold;
@@ -80,17 +99,39 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 position: absolute;
                 top: -20%;
                 right: -30px;
-                /* Khoảng cách của đường gạch từ mục */
                 height: 140%;
-                /* Chiều cao của đường gạch */
                 border-right: 1px solid #333;
-                /* Màu và kiểu đường gạch */
             }
 
             nav li:last-child::after {
                 display: none;
-                /* Ẩn đường gạch cho mục cuối cùng */
             }
+
+            nav .user-info {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                /* Căn giữa dọc */
+            }
+
+            nav li:last-child {
+                margin-top: 5px;
+            }
+
+            .user-info p {
+                color: black;
+                margin: 0;
+            }
+
+            .logout-button {
+                padding: 7px 17px;
+                color: white;
+                background-color: orange;
+                border: solid white;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+
 
             h3 {
                 margin-top: 5%;
@@ -127,7 +168,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     </head>
 
     <body>
-
         <form method="post">
             <nav>
                 <ul>
@@ -144,10 +184,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 </ul>
             </nav>
         </form>
-
-
-        <h3>Bảng Quản Lý Điểm Khảo Sát Người Dùng</h3>
-        <form method="post"  action="search_user_tests.php">
+        <h3> Bảng Quản Lý Người Dùng</h3>
+        <form method="post" action="search_user.php">
             <label for="search_input">Tìm kiếm:</label>
             <input type="text" id="search_input" name="search_input" >
             <input type="submit" name="search_button" value="Tìm kiếm">
@@ -156,17 +194,13 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>ID</th>
                     <th>Username</th>
                     <th>Fullname</th>
-                    <th>Test Main</th>
-                    <th>Test 1</th>
-                    <th>Test 2</th>
-                    <th>Test 3</th>
-                    <th>Test 4</th>
-                    <th>Test TB</th>
-                    <th>Time Start</th>
-                    <th>Time Taken</th>
-                    <th>Next Test Time</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Ngày Đăng Ký</th>
+                    <th>Phân Quyền</th>
                     <th>Chỉnh sửa</th>
                     <th>Xóa</th>
                 </tr>
@@ -174,33 +208,29 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             <tbody>
                 <?php
                 // Hiển thị dữ liệu từ kết quả truy vấn
-                if ($resultUserTests->num_rows > 0) {
-                    $stt = 1;
-                    while ($row = $resultUserTests->fetch_assoc()) {
+                if ($resultUsers->num_rows > 0) {
+                    $i = 1;
+                    while ($row = $resultUsers->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>{$stt}</td>";
+                        echo "<td>" . $i++ . "</td>";
+                        echo "<td>{$row['id']}</td>";
                         echo "<td>{$row['username']}</td>";
                         echo "<td>{$row['fullname']}</td>";
-                        echo "<td>{$row['testmain']}</td>";
-                        echo "<td>{$row['test1']}</td>";
-                        echo "<td>{$row['test2']}</td>";
-                        echo "<td>{$row['test3']}</td>";
-                        echo "<td>{$row['test4']}</td>";
-                        echo "<td>{$row['test_tb']}</td>";
-                        echo "<td>{$row['time_start']}</td>";
-                        echo "<td>{$row['time_taken']}</td>";
-                        echo "<td>{$row['next_test_time']}</td>";
-                        echo "<td><a href='edit_test.php?id={$row['id']}'>Chỉnh sửa</a></td>";
-                        echo "<td><a href='delete_test.php?id={$row['id']}'>Xóa</a></td>";
+                        echo "<td>{$row['email']}</td>";
+                        echo "<td>{$row['date']}</td>";
+                        echo "<td>{$row['ngaydangky']}</td>";
+                        echo "<td>{$row['idgroup']}</td>";
+                        echo "<td><a href='edit_user.php?id={$row['id']}'>Chỉnh sửa</a></td>";
+                        echo "<td><a href='delete_user.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
-                        $stt++;
                     }
                 } else {
-                    echo "<tr><td colspan='12'>Không có dữ liệu</td></tr>";
+                    echo "<tr><td colspan='9'>Không có dữ liệu</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
+
     </body>
 
     </html>

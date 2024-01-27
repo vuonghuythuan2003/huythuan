@@ -22,10 +22,28 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
     $loggedInFullname = $_SESSION['fullname'];
     $loggedInUsername = $_SESSION['username'];
 
-    // Truy vấn lấy dữ liệu từ bảng user_tests
-    $queryUserTests = "SELECT * FROM user_tests";
-    $resultUserTests = $conn->query($queryUserTests);
+    if (isset($_POST['search_button'])) {
+        $searchInput = $_POST['search_input'];
 
+        $queryUserTests = "SELECT * FROM user_tests 
+                          WHERE username LIKE '%$searchInput%' OR
+                                fullname LIKE '%$searchInput%' OR
+                                testmain LIKE '%$searchInput%' OR
+                                test1 LIKE '%$searchInput%' OR
+                                test2 LIKE '%$searchInput%' OR
+                                test3 LIKE '%$searchInput%' OR
+                                test4 LIKE '%$searchInput%' OR
+                                test_tb LIKE '%$searchInput%' OR
+                                time_start LIKE '%$searchInput%' OR
+                                time_taken LIKE '%$searchInput%' OR
+                                next_test_time LIKE '%$searchInput%'
+                          LIMIT 10";
+    } else {
+        header('Location: qly_DiemTest.php');
+        exit();
+    }
+
+    $resultUserTests = $conn->query($queryUserTests);
     // Đóng kết nối CSDL
     $conn->close();
 ?>
@@ -100,7 +118,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 font-family: Arial, sans-serif;
                 border-collapse: collapse;
                 width: 100%;
-                margin-top: 30px;
             }
 
             th,
@@ -148,9 +165,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
 
         <h3>Bảng Quản Lý Điểm Khảo Sát Người Dùng</h3>
         <form method="post"  action="search_user_tests.php">
-            <label for="search_input">Tìm kiếm:</label>
-            <input type="text" id="search_input" name="search_input" >
-            <input type="submit" name="search_button" value="Tìm kiếm">
+            <label for="search_input">Search:</label>
+            <input type="text" id="search_input" name="search_input" placeholder="Enter keyword">
+            <input type="submit" name="search_button" value="Search">
         </form>
         <table>
             <thead>

@@ -129,6 +129,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 font-family: Arial, sans-serif;
                 border-collapse: collapse;
                 width: 100%;
+                margin-top: 30px;
+
             }
 
             th,
@@ -172,6 +174,11 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             </nav>
         </form>
         <h3> Bảng Quản Lý Người Dùng</h3>
+        <form method="post" action="search_user.php">
+            <label for="search_input">Tìm kiếm:</label>
+            <input type="text" id="search_input" name="search_input" >
+            <input type="submit" name="search_button" value="Tìm kiếm">
+        </form>
         <table>
             <thead>
                 <tr>
@@ -206,7 +213,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                         echo "<td><a href='delete_user.php?id={$row['id']}'>Xóa</a></td>";
                         echo "</tr>";
                     }
-
                 } else {
                     echo "<tr><td colspan='9'>Không có dữ liệu</td></tr>";
                 }
