@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 <li><a href="#">Giải pháp</a></li>
                 <li><a href="#">Bài Test</a>
                     <ul class="sub-menu">
-                        <li><a href="testform.php">Bài Test Chính</a></li>
+                        <li><a href="../vd_test/ls_test.php">Bài Test Chính</a></li>
                         <li><a href="test1.php">Bài Test 1</a></li>
                         <li><a href="test2.php">Bài Test 2</a></li>
                         <li><a href="test3.php">Bài Test 3</a></li>
