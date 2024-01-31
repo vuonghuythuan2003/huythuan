@@ -110,15 +110,15 @@ function completeForm() {
 }
 
 
-// function sendScoreToServer(score) {
-//     var form = document.createElement('form');
-//     form.method = 'post';
-//     form.action = 'luu.php'; // Cập nhật với đường dẫn chính xác đến tệp PHP của bạn
-//     var input = document.createElement('input');
-//     input.type = 'hidden';
-//     input.name = 'user_score';
-//     input.value = score;
-//     form.appendChild(input);
-//     document.body.appendChild(form);
-//     form.submit();
-// }
+function sendScoreToServer(score) {
+    var form = document.createElement('form');
+    form.method = 'post';
+    form.action = 'luu.php'; // Cập nhật với đường dẫn chính xác đến tệp PHP của bạn
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'user_score';
+    input.value = score;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+}

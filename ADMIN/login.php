@@ -48,7 +48,7 @@ try {
 
         if ($idgroup_result == 0) {
             // Nếu idgroup = 0, chuyển hướng tới trang header.php
-            header('Location: ../views/header.php');
+            header('Location: ../views/trangchu.php');
             exit();
         } elseif ($idgroup_result == 1) {
             // Nếu idgroup = 1, chuyển hướng tới trang admin.php
@@ -72,7 +72,7 @@ try {
 
                 if ($idgroup_result == 0) {
                     // Nếu idgroup = 0, chuyển hướng tới trang header.php
-                    header('Location: ../views/header.php');
+                    header('Location: ../views/trangchu.php');
                     exit();
                 } elseif ($idgroup_result == 1) {
                     // Nếu idgroup = 1, chuyển hướng tới trang admin.php

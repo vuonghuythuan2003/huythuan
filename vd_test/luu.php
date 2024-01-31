@@ -13,27 +13,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Lấy giá trị từ form
-    $dataId1 = $_POST["data-id1"];
-    $dataId2 = $_POST["data-id2"];
-    $dataId3 = $_POST["data-id3"];
-    $dataId4 = $_POST["data-id4"];
-    $dataId5 = $_POST["data-id5"];
-    $dataId6 = $_POST["data-id6"];
-    $dataId7 = $_POST["data-id7"];
-    $dataId8 = $_POST["data-id8"];
-    $dataId9 = $_POST["data-id9"];
-    $dataId10 = $_POST["data-id10"];
+    // Lấy giá trị từ form và chèn vào các cột tương ứng
+    for ($i = 1; $i <= 10; $i++) {
+        $columnName = "test" . $i;
+        $dataIdKey = "data-id" . $i;
 
-    // Chuẩn bị câu lệnh SQL để chèn dữ liệu
-    $sql = "INSERT INTO test (test1, test2, test3, test4, test5, test6, test7, test8, test9, test10)
-            VALUES ('$dataId1', '$dataId2', '$dataId3', '$dataId4', '$dataId5', '$dataId6', '$dataId7', '$dataId8', '$dataId9', '$dataId10')";
+        // Kiểm tra xem key có tồn tại trong POST không
+        if (isset($_POST[$dataIdKey])) {
+            $dataIdValue = $_POST[$dataIdKey];
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Dữ liệu đã được chèn thành công.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+            // Chuẩn bị câu lệnh SQL để chèn dữ liệu
+            $sql = "INSERT INTO test ($columnName) VALUES ('$dataIdValue')";
+
+            if ($conn->query($sql) !== TRUE) {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+                break; // Nếu có lỗi, thoát vòng lặp
+            }
+        }
     }
+
+    echo "Dữ liệu đã được chèn thành công.";
 
     // Đóng kết nối
     $conn->close();

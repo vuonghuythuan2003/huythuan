@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 <div class="user-info" style="float: right; margin-right: 10px; padding: 10px; color: black;">
                     <?php
                     if (!empty($loggedInUsername)) {
-                        echo "Xin chào " . $loggedInUsername;
+                        echo "Xin chào " .'"'. $loggedInUsername.'"';
                     }
                     ?>
                 </div>
@@ -51,9 +51,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                 <!-- Nếu đã đăng nhập, hiển thị nút đăng xuất -->
                 <?php
                 if (!empty($loggedInUsername)) {
-                    echo '<div id="logout-btn" style="float: right; margin-right: 10px; padding: 10px; color: black;">
-                          <a href="../ADMIN/logout.php">Đăng xuất</a>
-                      </div>';
+                    echo '<div id="logout-btn" name="logout_button" style="float: right; margin-right: 10px; padding: 10px; color: black;">
+
+                    </div>';
                 }
                 ?>
             </div>
