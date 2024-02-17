@@ -34,6 +34,36 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
             background-color: rgba(0, 128, 0, 0.5);
             /* Màu xanh với độ trong suốt 0.5 */
         }
+
+        /* CSS cho dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 
     <body>
@@ -48,6 +78,17 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
                     <a href="news.php" class="menu-item">Tin tức mới nhất</a>
                     <a href="#" class="menu-item">Giải pháp</a>
                     <a href="game.php" class="menu-item">Game vui</a>
+                    <!-- Sử dụng class dropdown cho phần "Các bài test" -->
+                    <div class="dropdown">
+                        <a style="text-decoration: none;">Các bài test</a>
+                        <!-- Đặt dropdown-content bên trong phần tử có class dropdown -->
+                        <div class="dropdown-content">
+                            <a href="test1.php">Test 1</a>
+                            <a href="test2.php">Test 2</a>
+                            <a href="test3.php">Test 3</a>
+                            <a href="test4.php">Test 4</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
@@ -206,6 +247,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
         </div>
 
     </body>
+
     </html>
 
 <?php

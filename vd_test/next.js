@@ -1,4 +1,3 @@
-
 let currentQuestionIndex = 1;
 const totalQuestions = 10; // Cập nhật tổng số câu hỏi
 
@@ -68,7 +67,7 @@ function calculateTotalScore() {
 function sendScoreToServer(score) {
     var form = document.createElement('form');
     form.method = 'post';
-    form.action = 'process_test1.php'; // Cập nhật với đường dẫn chính xác đến tệp PHP của bạn
+    form.action = 'luu.php'; // Cập nhật với đường dẫn chính xác đến tệp PHP của bạn
     var input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'user_score';
@@ -109,16 +108,34 @@ function completeForm() {
     xhr.send(JSON.stringify(selectedQuestions));
 }
 
+function answerQuestion(id, name) {
+    // Lấy ID và tên của câu trả lời đã chọn
+    var answerId = id;
+    var answerName = name;
 
-function sendScoreToServer(score) {
-    var form = document.createElement('form');
-    form.method = 'post';
-    form.action = 'luu.php'; // Cập nhật với đường dẫn chính xác đến tệp PHP của bạn
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'user_score';
-    input.value = score;
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
+    // Các logic xử lý câu trả lời câu hỏi
+
+    // Lưu thông tin vào cơ sở dữ liệu (hoặc thực hiện bất kỳ xử lý nào khác)
+    saveAnswerToDatabase(answerId, answerName);
+}
+
+function saveAnswerToDatabase(answerId, answerName) {
+    // Gửi thông tin câu trả lời đến máy chủ bằng Ajax hoặc một cách khác tùy thuộc vào cấu trúc của bạn
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'luu.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Truyền thông tin câu trả lời
+    xhr.send('answerId=' + answerId + '&answerName=' + answerName);
+
+    // Xử lý phản hồi từ máy chủ (có thể thêm xử lý khác nếu cần)
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Xử lý phản hồi thành công
+            console.log(xhr.responseText);
+        } else {
+            // Xử lý lỗi khi gửi dữ liệu
+            console.error('Có lỗi khi gửi dữ liệu câu trả lời.');
+        }
+    };
 }

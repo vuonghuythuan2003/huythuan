@@ -1,210 +1,195 @@
-<?php
-// Bắt đầu phiên
-session_start();
+<!DOCTYPE html>
+<html lang="en">
 
-// Lấy thông tin người dùng từ phiên (nếu có)
-$loggedInFullname = $_SESSION['fullname'] ?? '';
-$loggedInUsername = $_SESSION['username'] ?? '';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Survey Page</title>
+    <script src="test1.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-// Kiểm tra đăng nhập
-if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['session_id'] == session_id()) {
-    // Nếu người dùng đã đăng nhập, lấy thông tin từ phiên
-    $loggedInFullname = $_SESSION['fullname'];
-    $loggedInUsername = $_SESSION['username'];
-?>
+        .form-container {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
 
-    <!DOCTYPE html>
-    <html lang="en">
+        .question {
+            margin-bottom: 15px;
+        }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bài Test</title>
-        <link rel="stylesheet" href="../CSS/trangchu.css">
-    </head>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
+        input[type="radio"] {
+            margin-right: 5px;
+        }
 
-    <body>
-        <div id="wrapper">
-            <div id="header">
-                <a href="" class="logo">
-                    <img src="../IMAGE/logo.png" alt="">
-                </a>
-                <nav id="menu">
-                    <a href="trangchu.html" class="menu-item">Trang chủ</a>
-                    <a href="#" class="menu-item">Tổng quan</a>
-                    <a href="news.php" class="menu-item">Tin tức mới nhất</a>
-                    <a href="#" class="menu-item">Giải pháp</a>
-                    <a href="game.php" class="menu-item">Game vui</a>
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: calc(33.33% - 5px);
+        }
 
-                </nav>
+        button:hover {
+            background-color: #45a049;
+        }
 
-                <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
-                <div class="user-info" style="float: right; margin-right: 10px; padding: 10px; color: black;">
-                    <?php
-                    if (!empty($loggedInUsername)) {
-                        echo "Xin chào " .'"'. $loggedInUsername.'"';
-                    }
-                    ?>
-                </div>
+        .completion {
+            margin-top: 20px;
+        }
 
-                <!-- Nếu đã đăng nhập, hiển thị nút đăng xuất -->
-                <?php
-                if (!empty($loggedInUsername)) {
-                    echo '<div id="logout-btn" name="logout_button" style="float: right; margin-right: 10px; padding: 10px; color: black;">
+        #userScoreDisplay {
+            font-weight: bold;
+            color: #1e90ff;
+        }
 
-                    </div>';
-                }
-                ?>
-            </div>
+        .form-container label,
+        .form-container input,
+        .form-container button {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
 
-            <div id="banner">
-                <div class="box-left">
-                    <h2>
-                        <span>HỖ TRỢ</span>
-                        <br>
-                        <span>TÂM LÝ TOÀN DIỆN</span>
-                        <p>Đối diện với những thách thức về tâm lý, chúng tôi không chỉ đơn thuần là người đưa ra chuẩn đoán, mà còn là đồng hành của bạn trên hành trình khám phá và phục hồi.</p>
-                        <a href="../ADMIN/login.php"><button>Tham gia ngay</button></a>
-                    </h2>
-                </div>
-                <div class="box-right">
-                    <img src="../IMAGE/testbr3.png" alt="">
-                    <img src="../IMAGE/testbr1.png" alt="">
-                    <img src="../IMAGE/testbr2.png" alt="">
-                </div>
-            </div>
-            <div class="slideshow-container">
+<body>
+    <div class="form-container">
 
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 6</div>
-                    <img src="../IMAGE/nav1.jpg" style="width:100%">
-                </div>
+        <div class="question" id="question1">
+            <label>1. Bạn cảm thấy thế nào về tâm trạng buồn của mình gần đây?</label> <br>
+            <input type="radio" data-id="mood1_0" name="mood1" value="0" onclick="answerQuestion(this.value)"> Không cảm thấy buồn<br>
+            <input type="radio" data-id="mood1_1" name="mood1" value="1" onclick="answerQuestion(this.value)"> Có lúc cảm thấy chán hoặc buồn<br>
+            <input type="radio" data-id="mood1_2" name="mood1" value="2" onclick="answerQuestion(this.value)"> Luôn cảm thấy chán hoặc buồn và khó dừng lại<br>
+            <input type="radio" data-id="mood1_3" name="mood1" value="3" onclick="answerQuestion(this.value)"> Luôn cảm thấy buồn và bất hạnh đến mức hoàn toàn đau khổ<br>
+            <input type="radio" data-id="mood1_4" name="mood1" value="4" onclick="answerQuestion(this.value)"> Rất buồn hoặc rất bất hạnh và khổ sở đến mức không thể chịu được<br>
+        </div>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 6</div>
-                    <img src="../IMAGE/nav2.jpg" style="width:100%">
-                </div>
+        <!-- Câu hỏi 2 -->
+        <div class="question" id="question2" style="display: none;">
+            <label>2. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+            <input type="radio" data-id="mood2_0" name="mood2" value="0" onclick="answerQuestion(this.value)"> Tôi hoàn toàn không bi quan và nản lòng về tương lai.<br>
+            <input type="radio" data-id="mood2_1" name="mood2" value="1" onclick="answerQuestion(this.value)"> Tôi cảm thấy nản lòng về tương lai hơn trước đây.<br>
+            <input type="radio" data-id="mood2_2" name="mood2" value="2" onclick="answerQuestion(this.value)"> Tôi cảm thấy mình chẳng có gì mong đợi ở tương lai cả.<br>
+            <input type="radio" data-id="mood2_3" name="mood2" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy sẽ không bao giờ khắc phục được những điều phiền muộn của tôi.<br>
+            <input type="radio" data-id="mood2_4" name="mood2" value="4" onclick="answerQuestion(this.value)"> Tôi cảm thấy tương lai tuyệt vọng và tình hình chỉ có thể tiếp tục xấu đi hoặc không thể cải thiện được.<br>
+        </div>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 6</div>
-                    <img src="../IMAGE/nav3.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">4 / 6</div>
-                    <img src="../IMAGE/nav4.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">5 / 6</div>
-                    <img src="../IMAGE/nav5.jpg" style="width:100%">
-                </div>
-                <div class="mySlides fade">
-                    <div class="numbertext">6 / 6</div>
-                    <img src="../IMAGE/nav6.jpg" style="width:100%">
-                </div>
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-
-            </div>
-            <br>
-
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-                <span class="dot" onclick="currentSlide(6)"></span>
-
-            </div>
-
-            <script>
-                let slideIndex = 1;
-                showSlides(slideIndex);
-
-                function plusSlides(n) {
-                    showSlides(slideIndex += n);
-                }
-
-                function currentSlide(n) {
-                    showSlides(slideIndex = n);
-                }
-
-                function showSlides(n) {
-                    let i;
-                    let slides = document.getElementsByClassName("mySlides");
-                    let dots = document.getElementsByClassName("dot");
-                    if (n > slides.length) {
-                        slideIndex = 1
-                    }
-                    if (n < 1) {
-                        slideIndex = slides.length
-                    }
-                    for (i = 0; i < slides.length; i++) {
-                        slides[i].style.display = "none";
-                    }
-                    for (i = 0; i < dots.length; i++) {
-                        dots[i].className = dots[i].className.replace(" active", "");
-                    }
-                    slides[slideIndex - 1].style.display = "block";
-                    dots[slideIndex - 1].className += " active";
-                }
-            </script>
-            <div>
-                <h2 style="text-align: justify;">Bài test đánh giá mức độ trầm cảm BECK&nbsp;</h2>
-                <p style="text-align: justify;">Bài test mức độ trầm cảm BECK là một trong những phương pháp nhằm đánh giá về cảm xúc và mức độ trầm cảm tương đối phổ biến, được sử dụng trong các bệnh viện, phòng khám chuyên sâu về sức khoẻ tinh thần hiện nay.</p>
-                <p style="text-align: justify;"><strong>Bài test nhằm mục đính:</strong></p>
-                <ul style="text-align: justify;">
-                    <li>Tự đánh giá tình trạng Sức khoẻ tinh thần cá nhân.</li>
-                    <li>Dự đoán về Sức khoẻ tinh thần và có kế hoạch thăm khám phù hợp.</li>
-                    <li>Tổng hợp thông tin để thuận tiện khi thăm khám với Bác sĩ/Chuyên gia</li>
-                </ul>
-                <p style="text-align: justify;"><strong>Lưu ý:</strong></p>
-                <p style="text-align: justify;">Kết quả bài test này chỉ mang tính chất tham khảo, không có giá trị thay thế chẩn đoán y khoa bởi bác sĩ/chuyên gia có chuyên môn.</p>
-                <p style="text-align: justify;"><strong>Nguyên tắc thực hiện bài test:</strong></p>
-                <p style="text-align: justify;">Bài test bao gồm 21 đề mục, hãy đọc cẩn thận tất cả các câu và chọn ra một đáp án gần giống nhất với <strong>tình trạng mà bạn cảm thấy trong 1 tuần trở lại đây</strong>, kể cả hôm nay.</p>
-                <p style="text-align: justify;"><strong>Nguồn tham khảo:</strong></p>
-                <p style="text-align: justify;"><a href="http://nimh.gov.vn/thang-danh-gia-tram-cam-beck-bdi/">Viện Sức khỏe Tâm thần, Bệnh viện Bạch Mai</a></p>
-            </div>
-            <p style="background-color: aqua; color:darkslategray">
-                <center><a href="../views/testform.php">Bắt đầu làm bài test</a></center>
-            </p>
-            <div class="footer">
-                <div class="footer-info">
-                    <img src="../IMAGE/logo.png"><br>
-                    MindWell <br>
-                    Số 123 Bắc Từ Liêm, Hà Nội<br>
-                    0123456789 <br>
-                    MindWell@gmail.com <br>
-                    <a href="https://www.facebook.com/profile.php?id=61555678442684"><img src="../IMAGE/facebook-icon.png"></a>
-                </div>
-                <div class="footer-about">
-                    <h2>About Us</h2>
-                    MindWell là nơi cung cấp thông tin <br>
-                    và hỗ trợ về sức khỏe tâm thần, <br>
-                    chúng tôi cam kết đồng hành cùng bạn <br>
-                    trên hành trình khám phá <br>
-                    và phục hồi tinh thần sức khỏe
-                </div>
-                <div class="footer-menu">
-                    <h2>Menu</h2>
-                    Trang chủ <br>
-                    Tổng quan <br>
-                    Giải pháp <br>
-                    Tin tức mới nhất <br>
-                    MindWell rất vui khi hỗ trợ Bạn !
-                </div>
-            </div>
+        <!-- Câu hỏi 3 -->
+        <div class="question" id="question3" style="display: none;">
+            <label>3. Bạn cảm thấy thế nào về bản thân và sự thất bại?</label> <br>
+            <input type="radio" data-id="mood3_0" name="mood3" value="0" onclick="answerQuestion(this.value)"> Không cảm thấy như bị thất bại<br>
+            <input type="radio" data-id="mood3_1" name="mood3" value="1" onclick="answerQuestion(this.value)"> Thấy mình thất bại nhiều hơn những người khác<br>
+            <input type="radio" data-id="mood3_2" name="mood3" value="2" onclick="answerQuestion(this.value)"> Cảm thấy đã hoàn thành rất ít điều đáng giá hoặc có ý nghĩa<br>
+            <input type="radio" data-id="mood3_3" name="mood3" value="3" onclick="answerQuestion(this.value)"> Nhìn lại cuộc đời, thấy mình đã có quá nhiều thất bại<br>
+            <input type="radio" data-id="mood3_4" name="mood3" value="4" onclick="answerQuestion(this.value)"> Cảm thấy mình là một người hoàn toàn thất bại<br>
+            <input type="radio" data-id="mood3_5" name="mood3" value="5" onclick="answerQuestion(this.value)"> Tự cảm thấy hoàn toàn thất bại trong vai trò của mình (bố, mẹ, chồng, vợ…)<br>
         </div>
 
 
-    </body>
+        <!-- Câu hỏi 4 -->
+        <div class="question" id="question4" style="display: none;">
+            <label>4. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+            <input type="radio" data-id="mood4_0" name="mood4" value="0" onclick="answerQuestion(this.value)"> Tôi hoàn toàn không bất mãn<br>
+            <input type="radio" data-id="mood4_1" name="mood4" value="1" onclick="answerQuestion(this.value)"> Tôi còn thích thú với những điều mà trước đây tôi vẫn thường ưa thích<br>
+            <input type="radio" data-id="mood4_2" name="mood4" value="2" onclick="answerQuestion(this.value)"> Tôi luôn luôn cảm thấy buồn<br>
+            <input type="radio" data-id="mood4_3" name="mood4" value="3" onclick="answerQuestion(this.value)"> Tôi ít thấy thích những điều mà tôi vẫn thường ưa thích trước đây<br>
+            <input type="radio" data-id="mood4_4" name="mood4" value="4" onclick="answerQuestion(this.value)"> Tôi không thõa mãn về bất kỳ cái gì nữa<br>
+            <input type="radio" data-id="mood4_5" name="mood4" value="5" onclick="answerQuestion(this.value)"> Tôi rất ít thích thú về những điều trước đây tôi vẫn thường ưa thích<br>
+            <input type="radio" data-id="mood4_6" name="mood4" value="6" onclick="answerQuestion(this.value)"> Tôi không còn chút thích thú nào nữa<br>
+            <input type="radio" data-id="mood4_7" name="mood4" value="7" onclick="answerQuestion(this.value)"> Tôi không hài lòng với mọi cái<br>
+        </div>
 
-    </html>
+        <!-- Câu hỏi 5 -->
+        <div class="question" id="question5" style="display: none;">
+            <label>5. Bạn cảm thấy thế nào về tội lỗi của mình?</label> <br>
+            <input type="radio" data-id="mood5_0" name="mood5" value="0" onclick="answerQuestion(this.value)"> Tôi hoàn toàn không cảm thấy có tội lỗi gì ghê gớm cả.<br>
+            <input type="radio" data-id="mood5_1" name="mood5" value="1" onclick="answerQuestion(this.value)"> Phần nhiều những việc tôi đã làm tôi đều cảm thấy có tội.<br>
+            <input type="radio" data-id="mood5_2" name="mood5" value="2" onclick="answerQuestion(this.value)"> Phần lớn thời gian tôi cảm thấy mình tồi hoặc không xứng đáng.<br>
+            <input type="radio" data-id="mood5_3" name="mood5" value="3" onclick="answerQuestion(this.value)"> Tôi cảm thấy mình hoàn toàn có tội.<br>
+            <input type="radio" data-id="mood5_4" name="mood5" value="4" onclick="answerQuestion(this.value)"> Giờ đây tôi luôn cảm thấy trên thực tế mình tồi hoặc không xứng đáng.<br>
+            <input type="radio" data-id="mood5_5" name="mood5" value="5" onclick="answerQuestion(this.value)"> Lúc nào tôi cũng cảm thấy mình có tội.<br>
+            <input type="radio" data-id="mood5_6" name="mood5" value="6" onclick="answerQuestion(this.value)"> Tôi cảm thấy như là tôi rất tồi hoặc vô dụng.<br>
+        </div>
 
-<?php
-} else {
-    // Nếu người dùng chưa đăng nhập, có thể thêm xử lý tương ứng ở đây
-    echo "Xin chào khách!";
-}
-?>
+        <!-- Câu hỏi 6 -->
+        <div class="question" id="question6" style="display: none;">
+            <label>6. Hãy chọn 1 ý đúng nhất với bản thân</label> <br>
+            <input type="radio" data-id="mood6_0" name="mood6" value="0" onclick="answerQuestion(this.value)"> Tôi không cảm thấy đang bị trừng phạt.<br>
+            <input type="radio" data-id="mood6_1" name="mood6" value="1" onclick="answerQuestion(this.value)"> Tôi cảm thấy có thể mình sẽ bị trừng phạt.<br>
+            <input type="radio" data-id="mood6_2" name="mood6" value="2" onclick="answerQuestion(this.value)"> Tôi cảm thấy một cái gì xấu có thể đến với tôi.<br>
+            <input type="radio" data-id="mood6_3" name="mood6" value="3" onclick="answerQuestion(this.value)"> Tôi mong chờ bị trừng phạt.<br>
+            <input type="radio" data-id="mood6_4" name="mood6" value="4" onclick="answerQuestion(this.value)"> Tôi cảm thấy mình sẽ bị trừng phạt.<br>
+            <input type="radio" data-id="mood6_5" name="mood6" value="5" onclick="answerQuestion(this.value)"> Tôi cảm thấy mình đang bị trừng phạt.<br>
+            <input type="radio" data-id="mood6_6" name="mood6" value="6" onclick="answerQuestion(this.value)"> Tôi muốn bị trừng phạt.<br>
+        </div>
+
+        <!-- Câu hỏi 7 -->
+        <div class="question" id="question7" style="display: none;">
+            <label id="label7">7. Tôi thấy bản thân mình vẫn như trước kia hoặc tôi không cảm thấy thất vọng với bản thân.</label> <br>
+            <input type="radio" data-id="mood7_0" name="mood7" value="0" onclick="answerQuestion(this.value)"> Không thay đổi<br>
+            <input type="radio" data-id="mood7_1" name="mood7" value="1" onclick="answerQuestion(this.value)"> Thất vọng và không tin tưởng vào bản thân<br>
+            <input type="radio" data-id="mood7_2" name="mood7" value="2" onclick="answerQuestion(this.value)"> Thất vọng và ghê tởm bản thân<br>
+            <input type="radio" data-id="mood7_3" name="mood7" value="3" onclick="answerQuestion(this.value)"> Ghét và căm thù bản thân<br>
+        </div>
+
+        <!-- Câu hỏi 8 -->
+        <div class="question" id="question8" style="display: none;">
+            <label id="label8">8. Tôi không phê phán hoặc đổ lỗi cho bản thân hơn trước kia.</label> <br>
+            <input type="radio" data-id="mood8_0" name="mood8" value="0" onclick="answerQuestion(this.value)"> Không phê phán<br>
+            <input type="radio" data-id="mood8_1" name="mood8" value="1" onclick="answerQuestion(this.value)"> Phê phán nhiều hơn<br>
+            <input type="radio" data-id="mood8_2" name="mood8" value="2" onclick="answerQuestion(this.value)"> Phê phán và khiển trách bản thân<br>
+            <input type="radio" data-id="mood8_3" name="mood8" value="3" onclick="answerQuestion(this.value)"> Đổ lỗi cho mọi điều tồi tệ<br>
+        </div>
+
+        <!-- Câu hỏi 9 -->
+        <div class="question" id="question9" style="display: none;">
+            <label id="label9">9. Tôi không có ý nghĩ tự sát.</label> <br>
+            <input type="radio" data-id="mood9_0" name="mood9" value="0" onclick="answerQuestion(this.value)"> Không có ý nghĩ tự sát<br>
+            <input type="radio" data-id="mood9_1" name="mood9" value="1" onclick="answerQuestion(this.value)"> Có ý nghĩ nhưng không thực hiện<br>
+            <input type="radio" data-id="mood9_2" name="mood9" value="2" onclick="answerQuestion(this.value)"> Muốn tự sát<br>
+            <input type="radio" data-id="mood9_3" name="mood9" value="3" onclick="answerQuestion(this.value)"> Có dự định rõ ràng tự sát<br>
+        </div>
+
+        <!-- Câu hỏi 10 -->
+        <div class="question question10" id="question10" style="display: none;">
+            <label id="label10">10. Bạn cảm thấy thế nào về việc thể hiện cảm xúc qua việc khóc?</label> <br>
+            <input type="radio" data-id="mood10_0" name="mood10" value="0" onclick="answerQuestion(this.value)"> Không thay đổi, tôi khóc ít như trước<br>
+            <input type="radio" data-id="mood10_1" name="mood10" value="1" onclick="answerQuestion(this.value)"> Tăng lên, tôi khóc nhiều hơn<br>
+            <input type="radio" data-id="mood10_2" name="mood10" value="2" onclick="answerQuestion(this.value)"> Luôn luôn khóc và không thể dừng lại<br>
+            <input type="radio" data-id="mood10_3" name="mood10" value="3" onclick="answerQuestion(this.value)"> Muốn khóc nhưng không thể<br>
+        </div>
+
+        <div class="completion" style="display: none;">
+            <p>Chúc mừng! Bạn đã hoàn thành phần câu hỏi.</p>
+            <p>Điểm của bạn là: <span id="userScoreDisplay"></span></p>
+        </div>
+
+        <!-- Nút "Tiếp tục" và "Hoàn thành" -->
+        <button id="nextButton" onclick="continueToNextQuestion()">Tiếp tục</button>
+        <button id="completeButton" onclick="completeSurvey()" style="display: none;">Hoàn thành</button>
+        <button id="backButton" onclick="goBackToPreviousQuestion()" style="display: none;">Quay lại</button>
+
+    </div>
+
+</body>
+
+</html>

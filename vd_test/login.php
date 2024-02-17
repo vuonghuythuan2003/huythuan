@@ -1,10 +1,12 @@
 <?php
-// Bắt đầu phiên
 session_start();
-
-// Lấy thông tin người dùng từ phiên (nếu có)
-$loggedInFullname = $_SESSION['fullname'] ?? '';
-$loggedInUsername = $_SESSION['username'] ?? '';
+// Kiểm tra xem có nút đăng xuất được nhấn hay không
+if (isset($_POST['logout_button'])) {
+    // Hủy bỏ phiên đăng nhập và chuyển hướng về trang đăng nhập
+    session_destroy();
+    header('Location: ../ADMIN/login.php');
+    exit();
+}
 
 // Kiểm tra đăng nhập
 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['session_id'] == session_id()) {
@@ -39,25 +41,18 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && $_SESSION['sessio
 
                 </nav>
 
-                <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
                 <div class="user-info" style="float: right; margin-right: 10px; padding: 10px; color: black;">
                     <?php
-                    if (!empty($loggedInUsername)) {
-                        echo "Xin chào " . $loggedInUsername;
-                    }
+                    echo isset($_SESSION['login_user']) ? "Xin chào " . $_SESSION['login_user'] : "";
                     ?>
                 </div>
-
-                <!-- Nếu đã đăng nhập, hiển thị nút đăng xuất -->
-                <?php
-                if (!empty($loggedInUsername)) {
-                    echo '<div id="logout-btn" style="float: right; margin-right: 10px; padding: 10px; color: black;">
-                          <a href="../ADMIN/logout.php">Đăng xuất</a>
-                      </div>';
-                }
-                ?>
+                <div id="action">
+                    <div class="item">
+                        <a href="../ADMIN/login.php">
+                            <img src="../IMAGE/logosignup.png" alt=""></a>
+                    </div>
+                </div>
             </div>
-
             <div id="banner">
                 <div class="box-left">
                     <h2>
